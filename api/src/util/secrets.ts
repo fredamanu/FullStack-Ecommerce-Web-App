@@ -12,6 +12,8 @@ if (fs.existsSync('.env')) {
 }
 
 export const ENVIRONMENT = process.env.NODE_ENV
+export const Secret = process.env.SOME_LONG_UNGUESSABLE_STRING
+
 const prod = ENVIRONMENT === 'production' // Anything else is treated as 'dev'
 
 export const JWT_SECRET = process.env['JWT_SECRET'] as string
