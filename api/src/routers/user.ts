@@ -4,7 +4,6 @@ import {
   createUser,
   deleteUser,
   findAllUsers,
-  findUserByEmail,
   findUserById,
   updateUser,
 } from '../controllers/user'
@@ -17,8 +16,8 @@ router.post('/', createUser)
 router.put('/:userId', updateUser)
 router.delete('/:userId', deleteUser)
 
-router.post('/login', findUserByEmail)
-
-router.post('/register', createUser)
-
 export default router
+
+// function (req, res) {
+//   res.send('hello')
+// }

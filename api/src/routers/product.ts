@@ -4,14 +4,15 @@ import {
   createProduct,
   deleteProduct,
   findAllProducts,
-  findProductById,
+  findProductByName,
   updateProduct,
 } from '../controllers/product'
 
 const router = express.Router()
 
 router.get('/', findAllProducts)
-router.get('/:productId', findProductById)
+// router.get('/:productId', findProductById)
+router.get('/:productName', findProductByName)
 router.post('/', createProduct)
 router.put('/:productId', updateProduct)
 router.delete('/:productId', deleteProduct)

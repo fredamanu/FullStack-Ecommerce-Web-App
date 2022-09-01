@@ -16,6 +16,16 @@ const findProductById = async (productId: string): Promise<ProductDocument> => {
   return foundProduct
 }
 
+const findProductByName = async (
+  productName: string
+): Promise<ProductDocument> => {
+  const foundProduct = await Product.findOne({ name: productName })
+  if (!foundProduct) {
+    throw new NotFoundError(`Product ${productName} not found`)
+  }
+  return foundProduct
+}
+
 const findAllProducts = async (): Promise<ProductDocument[]> => {
   const foundProducts = await Product.find()
   if (!foundProducts) {
@@ -48,6 +58,7 @@ const deleteProduct = async (productId: string): Promise<ProductDocument> => {
 export default {
   createProduct,
   findProductById,
+  findProductByName,
   findAllProducts,
   updateProduct,
   deleteProduct,

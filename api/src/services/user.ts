@@ -14,19 +14,22 @@ const findUserById = async (userId: string): Promise<UserDocument> => {
   return foundUser
 }
 
-const findUserByEmail = async (
-  email: string,
-  password: string
-): Promise<UserDocument> => {
+const findUserByEmail = async (email: string): Promise<UserDocument> => {
   const foundUser = await User.findOne({ email: email })
   if (!foundUser) {
     throw new NotFoundError(`User ${email} not found`)
   } else {
-    if (foundUser.password === password) {
-      return foundUser
-    }
-    throw new NotFoundError('Wrong password or email')
+    return foundUser
   }
+}
+
+const findOrCreate = async (user: UserDocument) => {
+  const foundUser = await User.findOne({ email: user.email })
+  if (!foundUser) {
+    const newUser = await user.save()
+    return newUser
+  }
+  return foundUser
 }
 
 const findAllUsers = async (): Promise<UserDocument[]> => {
@@ -60,6 +63,7 @@ const deleteUser = async (userId: string): Promise<UserDocument> => {
 
 export default {
   createUser,
+  findOrCreate,
   findUserById,
   findUserByEmail,
   findAllUsers,

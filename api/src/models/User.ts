@@ -1,6 +1,4 @@
 import mongoose, { Document } from 'mongoose'
-import encrypt from 'mongoose-encryption'
-import { Secret } from '../util/secrets'
 import { OrderDocument } from './Order'
 
 export type UserDocument = Document & {
@@ -27,11 +25,10 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       require: true,
-      unique: true,
+      // unique: true,
     },
     password: {
       type: String,
-      minLength: 6,
     },
     image: {
       type: String,
@@ -57,8 +54,6 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 )
-
-userSchema.plugin(encrypt, { secret: Secret, encryptedFields: ['password'] })
 
 const User = mongoose.model<UserDocument>('User', userSchema)
 

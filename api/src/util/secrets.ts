@@ -13,6 +13,11 @@ if (fs.existsSync('.env')) {
 
 export const ENVIRONMENT = process.env.NODE_ENV
 export const Secret = process.env.SOME_LONG_UNGUESSABLE_STRING
+export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string
+export const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string
+export const STRIPE_PUBLISHABLE_KEY = process.env
+  .STRIPE_PUBLISHABLE_KEY as string
+export const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY as string
 
 const prod = ENVIRONMENT === 'production' // Anything else is treated as 'dev'
 

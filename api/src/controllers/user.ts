@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express'
-
 import User from '../models/User'
 import UserServices from '../services/user'
 import { BadRequestError } from '../helpers/apiError'
@@ -10,16 +9,12 @@ export const createUser = async (
   next: NextFunction
 ) => {
   try {
-    const { firstName, lastName, email, password, image, isAdmin, isBanned } =
-      req.body
+    const { firstName, lastName, email, password } = req.body
     const user = new User({
       firstName,
       lastName,
       email,
       password,
-      image,
-      isAdmin,
-      isBanned,
     })
     res.json(await UserServices.createUser(user))
   } catch (error) {
@@ -69,9 +64,7 @@ export const findUserByEmail = async (
   next: NextFunction
 ) => {
   try {
-    res.json(
-      await UserServices.findUserByEmail(req.body.email, req.body.password)
-    )
+    res.json(await UserServices.findUserByEmail(req.body.email))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

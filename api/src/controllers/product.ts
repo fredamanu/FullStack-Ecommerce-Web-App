@@ -4,7 +4,7 @@ import Product from '../models/Product'
 import ProductServices from '../services/product'
 import { BadRequestError } from '../helpers/apiError'
 
-export const createProduct = async (
+export const createProduct: any = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -55,6 +55,22 @@ export const findProductById = async (
 ) => {
   try {
     res.json(await ProductServices.findProductById(req.params.productId))
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+export const findProductByName = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.json(await ProductServices.findProductByName(req.params.productName))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

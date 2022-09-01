@@ -3,7 +3,7 @@ import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout'
 
-export default function Home() {
+export default function CheckOut() {
   useEffect(() => {
     const getUsers = async () => {
       await axios
