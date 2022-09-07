@@ -31,6 +31,7 @@ const connect = async () => {
 }
 
 export default connect
+
 export type MongodHelper = {
   closeDatabase: () => Promise<void>
   clearDatabase: () => Promise<void>

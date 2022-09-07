@@ -1,18 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import TextField from '@mui/material/TextField'
-import {
-  Footer,
-  FooterBanner,
-  HeroBanner,
-  Navbar,
-  Product,
-} from '../components'
-import { useBanner, useProducts } from '../hooks/fectchData'
+import { Footer, HeroBanner, Navbar, Product } from '../components'
+import { useProducts } from '../hooks/fectchData'
 import { State } from '../types'
 
 export default function Shop() {
-  const { bannerData } = useBanner('http://localhost:5000/api/v1/banner')
   const products = useSelector((state: State) => state.products.data)
 
   useProducts()
@@ -30,9 +23,7 @@ export default function Shop() {
       </header>
       <main className="main-container">
         <>
-          {bannerData?.map((banner) => {
-            return <HeroBanner key={banner._id} data={banner} />
-          })}
+          <HeroBanner />
           <div className="products-searchbar">
             <TextField
               fullWidth
@@ -47,9 +38,6 @@ export default function Shop() {
               return <Product key={product._id} product={product} />
             })}
           </div>
-          {bannerData?.map((banner) => {
-            return <FooterBanner key={banner._id} footerBanner={banner} />
-          })}
         </>
       </main>
       <footer>

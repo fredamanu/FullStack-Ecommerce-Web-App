@@ -16,11 +16,11 @@ export const fetchProductFailure = (err: string) => ({
   payload: err,
 })
 
-export const fetchProduct = (productId: string) => {
+export const fetchProduct = (productName: string) => {
   return function (dispatch: any) {
     dispatch(fetchProductRequest())
     axios
-      .get(`http://localhost:5000/api/v1/products/${productId}`)
+      .get(`http://localhost:5000/api/v1/products/${productName}`)
       .then((response) => {
         dispatch(fetchProductSuccess(response.data))
       })

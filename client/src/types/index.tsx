@@ -1,5 +1,3 @@
-import { type } from '@testing-library/user-event/dist/type'
-import { BestSellerDocument } from '../../../api/src/models/BestSeller'
 import { ProductDocument } from '../../../api/src/models/Product'
 import * as actions from '../redux/actions/types'
 
@@ -15,7 +13,7 @@ export type ActionTypes =
   | { type: typeof actions.FETCH_BESTSELLERS_REQUEST }
   | {
       type: typeof actions.FETCH_BESTSELLERS_SUCCESS
-      payload: BestSellerDocument[]
+      payload: ProductDocument[]
     }
   | { type: typeof actions.FETCH_BESTSELLERS_FAILURE; payload: string }
   | { type: typeof actions.INCREASE_QUANTITY }
@@ -96,7 +94,7 @@ export type Products = {
 }
 
 export type BestSellers = {
-  data: BestSellerDocument[]
+  data: ProductDocument[]
   loading: boolean
   error: null | string
 }

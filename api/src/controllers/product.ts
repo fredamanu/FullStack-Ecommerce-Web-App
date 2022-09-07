@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 
 import Product from '../models/Product'
 import ProductServices from '../services/product'
-import { BadRequestError } from '../helpers/apiError'
+import ApiError, { BadRequestError } from '../helpers/apiError'
 
 export const createProduct: any = async (
   req: Request,
@@ -71,6 +71,22 @@ export const findProductByName = async (
 ) => {
   try {
     res.json(await ProductServices.findProductByName(req.params.productName))
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+export const findBestSellingProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.json(await ProductServices.findBestSellingProducts())
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

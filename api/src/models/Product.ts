@@ -76,6 +76,10 @@ export const productSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    isBestSeller: {
+      type: Boolean,
+      default: false,
+    },
     reviews: [reviewSchema],
     rating: {
       type: Number,
@@ -126,6 +130,7 @@ const Product = mongoose.model<ProductDocument>('Product', productSchema)
 //       'After you shampoo your hair and rinse it off, spread the mask throughout your damp hair and wait for 7 to 20 minutes. Rinse off and condition your hair to seal the cuticles and trap the treatment in the strands',
 //     disclosure:
 //       "Vegan, Cruelty Free, Sulphate Free, Parabens Free, Silicons Free, Petrochemicals Free, Phthalates Free, PEG's MEA's, TEA's, DEA's Free, Artificial Fragrance Free, Coloring Free",
+//     isBestSeller: true,
 //   },
 //   {
 //     name: 'repair',
@@ -168,6 +173,7 @@ const Product = mongoose.model<ProductDocument>('Product', productSchema)
 //       'Apply a small amount in hand, rub palms together and apply all over hair, especially concentrating on the ends. With a wide tooth comb or soft bristle brush, gently comb or brush through hair',
 //     disclosure:
 //       "Vegan, Cruelty Free, Sulphate Free, Parabens Free, Silicons Free, Petrochemicals Free, Phthalates Free, PEG's MEA's, TEA's, DEA's Free, Artificial Fragrance Free, Coloring Free",
+//     isBestSeller: true,
 //   },
 //   {
 //     name: 'gel',
@@ -226,6 +232,7 @@ const Product = mongoose.model<ProductDocument>('Product', productSchema)
 //       'After the shower, remove excess water gently with a soft towel and detangle with a wide-toothed comb. Apply a small amount to your hands and run them through your hair to spread the product evenly. Let hair dry',
 //     disclosure:
 //       "Vegan, Cruelty Free, Sulphate Free, Parabens Free, Silicons Free, Petrochemicals Free, Phthalates Free, PEG's MEA's, TEA's, DEA's Free, Artificial Fragrance Free, Coloring Free",
+//     isBestSeller: true,
 //   },
 
 //   {

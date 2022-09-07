@@ -1,12 +1,12 @@
 import * as actions from './types'
 import axios from 'axios'
-import { BestSellerDocument } from '../../../../api/src/models/BestSeller'
+import { ProductDocument } from '../../../../api/src/models/Product'
 
 export const fetchBestSellersRequest = () => ({
   type: actions.FETCH_BESTSELLERS_REQUEST,
 })
 
-export const fetchBestSellersSuccess = (data: BestSellerDocument) => ({
+export const fetchBestSellersSuccess = (data: ProductDocument[]) => ({
   type: actions.FETCH_BESTSELLERS_SUCCESS,
   payload: data,
 })
@@ -20,7 +20,7 @@ export const fetchBestSellers = () => {
   return function (dispatch: any) {
     dispatch(fetchBestSellersRequest())
     axios
-      .get(`http://localhost:5000/api/v1/bestsellers`)
+      .get(`http://localhost:5000/api/v1/products/bestsellers`)
       .then((response) => {
         dispatch(fetchBestSellersSuccess(response.data))
       })

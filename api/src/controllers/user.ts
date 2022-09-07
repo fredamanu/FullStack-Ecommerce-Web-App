@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import User from '../models/User'
+import bcrypt from 'bcrypt'
 import UserServices from '../services/user'
 import { BadRequestError } from '../helpers/apiError'
 
@@ -17,6 +18,30 @@ export const createUser = async (
       password,
     })
     res.json(await UserServices.createUser(user))
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+export const findOrCreateUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const hash = await bcrypt.hash(req.body.password, 10)
+    const { firstName, lastName, email } = req.body
+    const user = new User({
+      firstName,
+      lastName,
+      email,
+      password: hash,
+    })
+    res.json(await UserServices.findOrCreate(user))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))
@@ -64,7 +89,7 @@ export const findUserByEmail = async (
   next: NextFunction
 ) => {
   try {
-    res.json(await UserServices.findUserByEmail(req.body.email))
+    res.json(await UserServices.findUserByEmail(req.body))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

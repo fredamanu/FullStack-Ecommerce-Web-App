@@ -26,6 +26,14 @@ const findProductByName = async (
   return foundProduct
 }
 
+const findBestSellingProducts = async (): Promise<ProductDocument[]> => {
+  const foundProducts = await Product.find({ isBestSeller: true })
+  if (!foundProducts) {
+    throw new NotFoundError('There are no best-sellers available')
+  }
+  return foundProducts
+}
+
 const findAllProducts = async (): Promise<ProductDocument[]> => {
   const foundProducts = await Product.find()
   if (!foundProducts) {
@@ -58,6 +66,7 @@ const deleteProduct = async (productId: string): Promise<ProductDocument> => {
 export default {
   createProduct,
   findProductById,
+  findBestSellingProducts,
   findProductByName,
   findAllProducts,
   updateProduct,

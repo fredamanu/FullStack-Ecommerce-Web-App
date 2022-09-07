@@ -28,19 +28,26 @@ a {
 .navbar-container {
   display: flex;
   justify-content: space-between;
-  margin: 6px 18px;
-  position: relative;
+  align-content: center;
+  margin: 4px 10px;
 }
 
 .navlinks-container {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   position: relative;
 }
 
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .navlink {
-  margin-right: 50px;
-  margin-top: 28px;
+  margin-right: 40px;
+  margin-top: 10px;
 }
 
 .marquee-text {
@@ -79,11 +86,7 @@ span.text-red {
   -webkit-text-stroke: 1px #f02d34;
   margin-left: 6px;
 }
-.logo {
-  color: gray;
-  font-size: 18px;
-  margin-top: 28px;
-}
+
 .cart-icon {
   font-size: 25px;
   color: gray;
@@ -131,7 +134,6 @@ span.text-red {
   transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
-
 .product-name {
   font-weight: 500;
 }
@@ -140,18 +142,22 @@ span.text-red {
   margin-top: 6px;
   color: black;
 }
-
 .hero-banner-container {
   padding: 100px 40px;
-  background-color: #dcdcdc;
+  background-image: url('https://res.cloudinary.com/defgcg7hn/image/upload/v1662204897/banner/Untitled_design_3_lunh9d.png');
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 15px;
   position: relative;
   height: 500px;
   line-height: 0.9;
   width: 100%;
+  transition: background linear 5s;
 }
 .hero-banner-container .beats-solo {
   font-size: 20px;
+  color: #324d67;
 }
 .hero-banner-container button {
   border-radius: 15px;
@@ -169,6 +175,7 @@ span.text-red {
 .hero-banner-container h3 {
   font-size: 4rem;
   margin-top: 4px;
+  color: white;
 }
 .hero-banner-container h1 {
   color: white;
@@ -195,7 +202,7 @@ span.text-red {
   color: #324d67;
 }
 .desc p {
-  color: #5f5f5f;
+  color: white;
   font-weight: 100;
   text-align: end;
 }
@@ -203,7 +210,6 @@ span.text-red {
   margin-bottom: 12px;
   font-weight: 700;
   font-size: 16px;
-  /* color: black; */
   align-self: flex-end;
 }
 .products-heading {
@@ -225,12 +231,12 @@ span.text-red {
 }
 .footer-banner-container {
   padding: 100px 40px;
-  background-color: #f02d34;
+  background-color: rgb(236, 235, 235);
   border-radius: 15px;
   position: relative;
   height: 400px;
   line-height: 1;
-  color: white;
+  /* color: white; */
   width: 100%;
   margin-top: 120px;
 }
@@ -406,7 +412,7 @@ span.text-red {
   width: 100%;
   max-width: 400px;
   padding: 10px 12px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
   font-size: 20px;
   margin-top: 10px;
@@ -420,6 +426,123 @@ span.text-red {
 }
 .btn:hover {
   transform: scale(1.1, 1.1);
+}
+
+.login-wrapper {
+  width: 300px;
+  margin: auto;
+}
+
+.login-title {
+  color: rgb(24, 0, 69);
+  font-family: lato;
+  margin: 0px 0px 35px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 44px;
+  letter-spacing: -0.5px;
+}
+.login-fields-container {
+  position: relative;
+  margin-bottom: 10px;
+  color: #4a4a4a;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+.login-inputs {
+  background-color: white;
+  height: 42px;
+  margin: 0px;
+  font-size: 14px;
+  padding: 0px 10px 0px 45px;
+  box-shadow: rgb(25 4 69 / 5%) 0px 3px 6px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+}
+
+.login-btn-container {
+  margin: 25px 0px 30px;
+}
+
+.login-btn {
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 13px;
+  color: white;
+  font-weight: 400;
+  border-radius: 4px;
+  letter-spacing: 0px;
+  font-family: Lato;
+  transition: all 0.4s ease-out 0s;
+  background-color: #f02d34;
+  text-align: center;
+  font-size: 15px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  position: relative;
+  box-shadow: rgb(25 4 69 / 5%) 0px 4px 10px;
+  height: 32px;
+  width: 100%;
+}
+
+.google-btn {
+  background-color: rgba(174, 174, 176, 0.6);
+  color: #4a4a4a;
+  text-align: left;
+  align-items: center;
+  justify-content: left;
+}
+
+.google-btn-txt {
+  margin-left: 40px;
+}
+.submit {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+}
+.login-actions-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #4a4a4a;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+.p1,
+.p2,
+.p3 {
+  text-align: left;
+  font-family: lato;
+  font-weight: 400;
+  letter-spacing: 0px;
+  font-size: 14px;
+  line-height: 21px;
+}
+.p1 {
+  margin: 0px;
+  display: inline-block;
+  color: rgba(25, 4, 69, 0.7);
+}
+
+.p2 {
+  margin: 0px 0px 0px 5px;
+  display: inline-block;
+  color: #f02d34;
+  margin-left: 5px;
+}
+.p3 {
+  margin: 0px;
+  color: rgba(25, 4, 69, 0.4);
 }
 .product-detail-container {
   display: flex;

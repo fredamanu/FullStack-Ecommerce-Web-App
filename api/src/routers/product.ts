@@ -1,9 +1,11 @@
 import express from 'express'
+import { NotFoundError } from '../helpers/apiError'
 
 import {
   createProduct,
   deleteProduct,
   findAllProducts,
+  findBestSellingProducts,
   findProductByName,
   updateProduct,
 } from '../controllers/product'
@@ -11,6 +13,7 @@ import {
 const router = express.Router()
 
 router.get('/', findAllProducts)
+router.get('/bestsellers', findBestSellingProducts)
 // router.get('/:productId', findProductById)
 router.get('/:productName', findProductByName)
 router.post('/', createProduct)

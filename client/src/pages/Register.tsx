@@ -1,109 +1,119 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import GoogleIcon from '@mui/icons-material/Google'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Card from 'react-bootstrap/Card'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+
+import GoogleLogIn from '../components/GoogleLogIn'
+import { userLogin } from '../redux/actions/user'
+import toast from 'react-hot-toast'
+
+type FormData = {
+  email: string
+  password: string
+  firstName: string
+  lastName: string
+}
 
 export default function Register() {
   const navigate = useNavigate()
-  const handleRegister = async (e: any) => {
-    e.preventDefault()
-    const user = {
-      firstName: e.target.firstName.value,
-      lastName: e.target.lastName.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-    }
+  const dispatch = useDispatch()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>()
+
+  const onSubmit = handleSubmit(async (data) => {
     await axios
-      .post('http://localhost:5000/api/v1/user/register', user)
-      .then(function (response) {
-        console.log(response.data)
-        if (response.data.isAuthenticated === true) {
-          navigate('/order')
-        } else {
+      .post('http://localhost:5000/api/v1/users/register', data)
+      .then((response) => {
+        console.log(response)
+        dispatch(userLogin(response.data))
+        navigate('/')
+      })
+      .catch((error) => {
+        console.log(error.response.data.message)
+        if ((error.response.data.message = 'user already exist')) {
+          toast.error('An account for this email already exist. Please sign in')
           navigate('/login')
         }
       })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
-  return (
-    <div
-      style={{
-        width: '85%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '70px',
-      }}
-    >
-      <h1>Register</h1>
-      <Row>
-        <Col className="col-sm-8">
-          <Card>
-            <Card.Body>
-              <Form onSubmit={handleRegister}>
-                <Row className="mb-3">
-                  <Form.Group as={Col} controlId="formGridFirstName">
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter first name"
-                      name="firstName"
-                    />
-                  </Form.Group>
+  })
 
-                  <Form.Group as={Col} controlId="formGridLastName">
-                    <Form.Label>Last Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter last name"
-                      name="lastName"
-                    />
-                  </Form.Group>
-                </Row>
-                <Form.Group className="mb-3" controlId="formGroupEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    name="email"
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                  />
-                </Form.Group>
-                <Button variant="dark" type="submit">
-                  SignUp
-                </Button>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="col-sm-4">
-          <Card>
-            <Card.Body>
-              <a
-                style={{ textDecoration: 'none', color: 'black' }}
-                href="/auth/google"
-                role="button"
-              >
-                <GoogleIcon />
-                Sign In with Google
-              </a>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+  return (
+    <div className="login-wrapper">
+      <p className="login-title">Sign up</p>
+      <Form onSubmit={onSubmit}>
+        <div>
+          <div className="login-fields-container">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control
+              className="login-inputs"
+              type="text"
+              {...register('firstName')}
+            />
+          </div>
+          <div className="login-fields-container">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
+              className="login-inputs"
+              type="text"
+              {...register('lastName')}
+            />
+          </div>
+          <div className="login-fields-container">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              className="login-inputs"
+              type="email"
+              // placeholder="Enter email"
+              {...register('email', {
+                required: 'Email Address is required',
+                pattern: {
+                  value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                  message: 'You have entered an invalid email address!',
+                },
+              })}
+            />
+            <p>{errors.email?.message}</p>
+          </div>
+          <div className="login-fields-container">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              className="login-inputs"
+              type="password"
+              {...register('password', {
+                required: 'Password is required',
+                minLength: {
+                  value: 8,
+                  message: 'Your password must be at least 8 characters',
+                },
+              })}
+            />
+            <p>{errors.password?.message}</p>
+          </div>
+        </div>
+        <div className="login-btn-container">
+          <button className="login-btn" type="submit">
+            <input
+              aria-label="submit"
+              type="submit"
+              value="Continue"
+              className="submit"
+            />
+            Continue
+          </button>
+        </div>
+        <GoogleLogIn />
+      </Form>
+      <div className="login-actions-container">
+        <a href="/login">
+          <p className="p1">Already have an account?</p>
+          <p className="p2">Sign in</p>
+        </a>
+      </div>
     </div>
   )
 }

@@ -4,6 +4,8 @@ import {
   createUser,
   deleteUser,
   findAllUsers,
+  findOrCreateUser,
+  findUserByEmail,
   findUserById,
   updateUser,
 } from '../controllers/user'
@@ -15,6 +17,8 @@ router.get('/:userId', findUserById)
 router.post('/', createUser)
 router.put('/:userId', updateUser)
 router.delete('/:userId', deleteUser)
+router.post('/register', findOrCreateUser)
+router.post('/login', findUserByEmail)
 
 export default router
 
