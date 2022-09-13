@@ -49,7 +49,7 @@ const orderSchema = new mongoose.Schema(
     },
     paymentMethod: {
       type: String,
-      default: 'Paypal',
+      default: 'Credit Card',
       require: true,
     },
     taxPrice: {

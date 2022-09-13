@@ -23,6 +23,7 @@ export const createOrder = async (
       deliveredAt,
     } = req.body
     const order = new Order({
+      userId: req.params.userId,
       orderItems,
       shippingAddress,
       paymentMethod,
@@ -34,7 +35,7 @@ export const createOrder = async (
       isDelivered,
       deliveredAt,
     })
-    res.json(await OrderServices.createOrder(order, req.params.userId))
+    res.json(await OrderServices.createOrder(order))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

@@ -3,13 +3,9 @@ import { NotFoundError } from '../helpers/apiError'
 import Order, { OrderDocument } from '../models/Order'
 import UserServices from '../services/user'
 
-const createOrder = async (
-  order: OrderDocument,
-  userId: string
-): Promise<UserDocument> => {
-  order.userId = userId
+const createOrder = async (order: OrderDocument): Promise<UserDocument> => {
   await order.save()
-  const user = await UserServices.findUserById(userId)
+  const user = await UserServices.findUserById(order.userId)
   user.orders.push(order._id)
   await user.save()
   return user
