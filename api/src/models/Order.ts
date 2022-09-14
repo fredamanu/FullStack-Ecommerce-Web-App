@@ -36,40 +36,40 @@ const orderSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      require: true,
+      required: true,
       ref: 'User',
     },
     orderItems: {
       type: [productSchema],
-      require: true,
+      required: true,
     },
     shippingAddress: {
       type: shippingAddressSchema,
-      require: true,
+      required: true,
     },
     paymentMethod: {
       type: String,
       default: 'Credit Card',
-      require: true,
+      required: true,
     },
     taxPrice: {
       type: Number,
       default: 0.0,
-      require: true,
+      required: true,
     },
     shippingPrice: {
       type: Number,
       default: 0.0,
-      require: true,
+      required: true,
     },
     totalPrice: {
       type: Number,
       default: 0.0,
-      require: true,
+      required: true,
     },
     isPaid: {
       type: Boolean,
-      require: true,
+      required: true,
       default: false,
     },
     paidAt: {
@@ -77,7 +77,7 @@ const orderSchema = new mongoose.Schema(
     },
     isDelivered: {
       type: Boolean,
-      require: true,
+      required: true,
       default: false,
     },
     deliveredAt: {

@@ -31,21 +31,21 @@ const reviewSchema = new mongoose.Schema({
     type: Number,
     min: 0,
     max: 5,
-    require: true,
+    required: true,
     default: 0,
   },
   titleOfReview: {
     type: String,
-    require: true,
+    required: true,
   },
   comment: {
     type: String,
-    require: true,
+    required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    require: true,
+    required: true,
   },
 })
 
@@ -53,28 +53,28 @@ export const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
     },
     image: {
       type: String,
-      require: true,
+      required: true,
     },
 
     benefits: {
       type: String,
-      require: true,
+      required: true,
     },
     ingredients: {
       type: String,
-      require: true,
+      required: true,
     },
     suggestedUse: {
       type: String,
-      require: true,
+      required: true,
     },
     disclosure: {
       type: String,
-      require: true,
+      required: true,
     },
     isBestSeller: {
       type: Boolean,
@@ -85,28 +85,28 @@ export const productSchema = new mongoose.Schema(
       type: Number,
       min: 0,
       max: 5,
-      require: true,
+      required: true,
       default: 0,
     },
     numOfReviews: {
       type: Number,
-      require: true,
+      required: true,
       default: 0,
     },
     price: {
       type: Number,
-      require: true,
+      required: true,
       default: 0,
     },
     size: {
       type: Number,
-      require: true,
+      required: true,
       default: 8,
     },
     countInStock: {
       type: Number,
       default: 0,
-      require: true,
+      required: true,
     },
   },
   {

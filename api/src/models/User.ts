@@ -16,16 +16,16 @@ const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      require: true,
+      required: true,
     },
     lastName: {
       type: String,
-      require: true,
+      required: true,
     },
     email: {
       type: String,
       require: true,
-      unique: true,
+      uniqued: true,
     },
     password: {
       type: String,
@@ -36,12 +36,12 @@ const userSchema = new mongoose.Schema(
     isAdmin: {
       type: Boolean,
       default: false,
-      require: true,
+      required: true,
     },
     isBanned: {
       type: Boolean,
       default: false,
-      require: true,
+      required: true,
     },
     orders: [
       {
