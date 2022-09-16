@@ -1,33 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import User from '../models/User'
 import bcrypt from 'bcrypt'
+
 import UserServices from '../services/user'
 import { BadRequestError } from '../helpers/apiError'
 
-export const createUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const { firstName, lastName, email, password } = req.body
-    const user = new User({
-      firstName,
-      lastName,
-      email,
-      password,
-    })
-    res.json(await UserServices.createUser(user))
-  } catch (error) {
-    if (error instanceof Error && error.name == 'ValidationError') {
-      next(new BadRequestError('Invalid Request', error))
-    } else {
-      next(error)
-    }
-  }
-}
-
-export const findOrCreateUser = async (
+export const findOrCreateUserUsingRegister = async (
   req: Request,
   res: Response,
   next: NextFunction

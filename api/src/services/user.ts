@@ -1,10 +1,14 @@
 import User, { UserDocument } from '../models/User'
-import { BadRequestError, NotFoundError } from '../helpers/apiError'
+import { NotFoundError } from '../helpers/apiError'
 import bcrypt from 'bcrypt'
 
-const createUser = async (user: UserDocument): Promise<UserDocument> => {
-  const newUser = await user.save()
-  return newUser
+const findOrCreate = async (user: UserDocument) => {
+  const foundUser = await User.findOne({ email: user.email })
+  if (!foundUser) {
+    const newUser = await user.save()
+    return newUser
+  }
+  return foundUser
 }
 
 const findUserById = async (userId: string): Promise<UserDocument> => {
@@ -15,18 +19,10 @@ const findUserById = async (userId: string): Promise<UserDocument> => {
   return foundUser
 }
 
-const findUser = async (user: UserDocument): Promise<UserDocument> => {
+const findUserByEmail = async (user: UserDocument): Promise<UserDocument> => {
   const foundUser = await User.findOne({ email: user.email })
   if (!foundUser) {
-    throw new NotFoundError('user not found')
-  }
-  return foundUser
-}
-
-const findUserByEmail = async (user: UserDocument): Promise<UserDocument> => {
-  const foundUser = await findUser(user)
-  if (!foundUser) {
-    throw new NotFoundError('user not found')
+    throw new NotFoundError(`user ${user.email} not found`)
   } else {
     const match = await bcrypt.compare(user.password, foundUser.password)
     if (match === true) {
@@ -34,15 +30,6 @@ const findUserByEmail = async (user: UserDocument): Promise<UserDocument> => {
     }
     throw new NotFoundError('password is incorrect')
   }
-}
-
-const findOrCreate = async (user: UserDocument) => {
-  const foundUser = await findUser(user)
-  if (!foundUser) {
-    const newUser = await createUser(user)
-    return newUser
-  }
-  throw new BadRequestError('user already exist')
 }
 
 const findAllUsers = async (): Promise<UserDocument[]> => {
@@ -75,8 +62,6 @@ const deleteUser = async (userId: string): Promise<UserDocument> => {
 }
 
 export default {
-  findUser,
-  createUser,
   findOrCreate,
   findUserById,
   findUserByEmail,
