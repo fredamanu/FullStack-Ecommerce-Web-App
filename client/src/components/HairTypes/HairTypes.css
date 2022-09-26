@@ -1,0 +1,99 @@
+.hair-types-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.hair-types-card {
+  width: 360px;
+  height: 360px;
+  position: relative;
+}
+
+/* @media screen and (max-width: 1200px) {
+    .hair-types-card{
+        width: 300px;
+        height: 300px  
+        
+        }
+} */
+
+/* @media screen and (max-width: 900px) {
+    .hair-types-card{
+        width: 210px;
+        height: 210px  
+        
+        }
+} */
+
+@media screen and (max-width: 900px) {
+  .hair-types-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hair-types-card {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.hair-types-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hair-types-card-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.hair-types-card-hover:hover {
+  opacity: 1;
+}
+
+.center {
+  margin: 200px auto 20px;
+  color: #fff;
+  text-align: center;
+  width: 50%;
+}
+
+.title {
+
+  color: #fff;
+}
+
+.title h5 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.divider {
+  border-bottom: 1px solid #fff;
+  width: 50%;
+  margin: 0 auto 7px;
+}
+
+.center button {
+  background-color: var(--tertiary-color);
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}

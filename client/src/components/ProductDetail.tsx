@@ -4,7 +4,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined'
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
 import StarIcon from '@mui/icons-material/Star'
-import Product from './Product'
+import Product from './Product/Product'
 import { ProductDocument } from '../../../api/src/models/Product'
 
 import { State } from '../types'

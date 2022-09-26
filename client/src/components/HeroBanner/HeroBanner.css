@@ -1,0 +1,96 @@
+.hero-banner-container {
+    padding: 100px 40px;
+    /* background-image: url('https://res.cloudinary.com/defgcg7hn/image/upload/v1662204897/banner/Untitled_design_3_lunh9d.png'); */
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    position: relative;
+    height: 650px;
+    line-height: 0.9;
+    width: 100%;
+    transition: background linear 5s;
+    
+  }
+  .hero-banner-container .slogan {
+    font-size: 20px;
+    color: #324d67;
+  }
+  .hero-banner-container button {
+    border-radius: 15px;
+    padding: 10px 16px;
+    background-color: var(--tertiary-color);
+    color: white;
+    border: none;
+    margin-top: 4rem;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 10000 !important;
+    transition: all o.3s ease;
+  }
+  
+  .hero-banner-container button:hover{
+    background-color: var(--primary-color);
+    color: black;
+  }
+
+
+  .hero-banner-container h4 {
+    font-size: 2rem;
+    margin: 4px 0 20px 0;
+    color: white;
+  }
+  .hero-banner-container h3 {
+    color: white;
+    font-size: 3em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  .hero-banner-container h5 {
+    font-size: 1.5em;
+    margin-top: 4px;
+    color: white;
+  }
+  /* .hero-banner-image {
+    position: absolute;
+    top: 5%;
+    right: 15%;
+    width: 550px;
+    height: 400px;
+  } */
+  
+  .desc {
+    position: absolute;
+    right: 10%;
+    bottom: 5%;
+    width: 300px;
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    color: #324d67;
+  }
+  .desc p {
+    color: white;
+    font-weight: 100;
+    text-align: end;
+  }
+  .desc h5 {
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 20px;
+    align-self: flex-end;
+  }
+
+  .carousel-btns{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+position: relative;
+top: -300px;
+  }
+
+  .btn-left svg, .btn-right svg{
+    font-size: 3rem;
+    color: var(--gray-color);
+  }

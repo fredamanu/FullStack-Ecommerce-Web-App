@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import TextField from '@mui/material/TextField'
-import { Footer, HeroBanner, Navbar, Product } from '../components'
+import { Footer, HeroBanner, Navigation, Product } from '../components'
 import { useProducts } from '../hooks/fectchData'
 import { State } from '../types'
 
@@ -19,7 +19,7 @@ export default function Shop() {
   return (
     <div className="layout">
       <header>
-        <Navbar />
+        <Navigation />
       </header>
       <main className="main-container">
         <>

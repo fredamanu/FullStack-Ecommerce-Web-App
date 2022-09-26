@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form'
 import GoogleLogIn from '../components/GoogleLogIn'
 import { userLogin } from '../redux/actions/user'
 import toast from 'react-hot-toast'
+import { Footer } from '../components'
 
 type FormData = {
   email: string
@@ -43,6 +44,8 @@ export default function Register() {
   })
 
   return (
+    <div className="layout login-page">
+      <main className="main-container">
     <div className="login-wrapper">
       <p className="login-title">Sign up</p>
       <Form onSubmit={onSubmit}>
@@ -114,6 +117,11 @@ export default function Register() {
           <p className="p2">Sign in</p>
         </a>
       </div>
+    </div>
+    </main>
+    <footer>
+        <Footer />
+      </footer>
     </div>
   )
 }

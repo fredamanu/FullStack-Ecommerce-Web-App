@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { Footer, Navbar } from '../components'
+import { Footer, Navigation } from '../components'
 import ProductDetail from '../components/ProductDetail'
 import { useProduct, useProducts } from '../hooks/fectchData'
 import { State } from '../types'
@@ -16,7 +16,7 @@ export default function ProductDetails() {
 
   return (
     <div>
-      <Navbar />
+      <Navigation />
       <ProductDetail
         product={product && product}
         products={products && products}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import './App.css'
 import HomePage from './pages/HomePage'
@@ -17,7 +18,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/products/:productName" element={<ProductDetails />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/success" element={<Success />} />
         <Route path="/order" element={<Order />} />
