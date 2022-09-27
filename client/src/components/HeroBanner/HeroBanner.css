@@ -1,5 +1,5 @@
 .hero-banner-container {
-    padding: 100px 40px;
+    /* padding: 100px 40px; */
     /* background-image: url('https://res.cloudinary.com/defgcg7hn/image/upload/v1662204897/banner/Untitled_design_3_lunh9d.png'); */
     background-position: top;
     background-size: cover;
@@ -10,6 +10,8 @@
     line-height: 0.9;
     width: 100%;
     transition: background linear 5s;
+    margin-bottom: 150px;
+    background-color: red;
     
   }
   .hero-banner-container .slogan {
@@ -22,7 +24,7 @@
     background-color: var(--tertiary-color);
     color: white;
     border: none;
-    margin-top: 4rem;
+    margin: 4rem 0;
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
@@ -62,7 +64,7 @@
   
   .desc {
     position: absolute;
-    right: 10%;
+    right: -10%;
     bottom: 5%;
     width: 300px;
     line-height: 1.3;
@@ -70,11 +72,24 @@
     flex-direction: column;
     color: #324d67;
   }
+
   .desc p {
     color: white;
     font-weight: 100;
     text-align: end;
   }
+
+  #desc1-p{
+    text-transform: none;
+  }
+
+#desc-p{
+  color: #fff;
+  text-align: start;
+  text-transform: none;
+  font-weight: 100;
+}
+
   .desc h5 {
     margin-bottom: 12px;
     font-weight: 700;

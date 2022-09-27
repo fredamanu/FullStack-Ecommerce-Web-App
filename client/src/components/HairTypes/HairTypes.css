@@ -1,6 +1,7 @@
 .hair-types-container {
   display: flex;
   flex-direction: row;
+  margin: 0 0 150px;
 }
 
 .hair-types-card {

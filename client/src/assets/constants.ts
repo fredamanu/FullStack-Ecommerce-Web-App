@@ -10,6 +10,7 @@ import meta from './meta.png'
 import discover from './discover.png'
 import googlepay from './googlepay.jpeg'
 import applepay from './applepay.png'
+import curly from './curly.webp'
 
 export default {
   logo,
@@ -24,4 +25,5 @@ export default {
   discover,
   googlepay,
   applepay,
+  curly,
 }

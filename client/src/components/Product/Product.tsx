@@ -27,7 +27,9 @@ const Product: React.FC<Props> = ({
             )}
           </div>
 
-          <h6 className="product-name">{name}</h6>
+          <p className="product-name" id="product-name">
+            {name}
+          </p>
           <p className="product-price">€ {price} EUR</p>
           <div className="star-icon-container">
             <StarIcon />

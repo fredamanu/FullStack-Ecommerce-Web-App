@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
+import CarouselImages from '../Carousel/CarouselImages'
 
 import './HeroBanner.css'
 
@@ -33,7 +34,8 @@ const HeroBanner = () => {
         className="hero-banner-container"
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
-        <div style={{ width: 400, textAlign: 'center', marginTop: 80 }}>
+        <CarouselImages />
+        {/* <div style={{ width: 400, textAlign: 'center', marginTop: 80 }}>
           <p className="slogan">Great Hair is Divine!</p>
           <h4>Winter Sale</h4>
           <h3>20% Off First Orders</h3>
@@ -47,9 +49,9 @@ const HeroBanner = () => {
               <p>Best wash and go combo on the market</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className="carousel-btns app__flex">
+      {/* <div className="carousel-btns app__flex">
         <div
           className="app__flex btn-left"
           onClick={() =>
@@ -70,7 +72,7 @@ const HeroBanner = () => {
         >
           <HiChevronRight />
         </div>
-      </div>
+      </div> */}
     </>
   )
 }
