@@ -29,7 +29,7 @@ export default function Navbar() {
   }
 
   const handleChangeColor = () => {
-    if (window.scrollY >= 250) {
+    if (window.scrollY >= 90) {
       setColor(true)
     } else {
       setColor(false)

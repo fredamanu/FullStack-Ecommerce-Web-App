@@ -1,6 +1,10 @@
-.carousel-item {
+
+.carousel{
+  height: 650px;
+}
+/* .carousel-item {
     transition: opacity 1s ease-in-out !important;
-  }
+  } */
   .carousel-item img{
    height: 650px;
    width: 100%;

@@ -1,10 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
 import StarIcon from '@mui/icons-material/Star'
 
 import { ProductDocument } from '../../../../api/src/models/Product'
 import './Product.css'
+import { addToCart } from '../../redux/actions/cart'
+import { State } from '../../types'
 
 type Props = {
   product: ProductDocument
@@ -13,7 +16,20 @@ type Props = {
 const Product: React.FC<Props> = ({
   product: { name, image, price, _id, isBestSeller },
 }) => {
+  const dispatch = useDispatch<any>()
+  const quantity = useSelector((state: State) => state.quantity.quantity)
   const url = `/products/${name}`
+  const handleAddToCart = () => {
+    const cartItem = {
+      _id: _id as string,
+      name: name as string,
+      image: image as string,
+      price: price as number,
+      qty: quantity as number,
+    }
+
+    dispatch(addToCart(cartItem))
+  }
   return (
     <div className="product-flex-container">
       <Link to={url} className="product-flex">
@@ -41,7 +57,9 @@ const Product: React.FC<Props> = ({
           </div>
         </div>
       </Link>
-      <div className="add-to-cart-btn">add to cart</div>
+      <div className="add-to-cart-btn" onClick={handleAddToCart}>
+        add to cart
+      </div>
     </div>
   )
 }

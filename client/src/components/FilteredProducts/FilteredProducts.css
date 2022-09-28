@@ -1,0 +1,25 @@
+.products-filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+   text-align: center;
+    margin: 4rem 0 2rem;
+}
+
+.filter-item{
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color);
+    color: #000;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.5rem;
+}
+
+.item-active {
+    background-color: var(--tertiary-color);
+    color: #fff;
+  }
