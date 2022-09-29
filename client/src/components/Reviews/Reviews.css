@@ -1,0 +1,98 @@
+.reviews-container{
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: rgba(249, 249, 249);
+    border: 1px solid rgba(238, 238, 238);
+    margin: 50px auto;
+}
+.reviews-container h5{
+    color: #324d67;
+    margin-bottom: 20px;
+}
+
+.review-form-container .divider{
+width: 98%;
+border-bottom: 1px solid rgba(238, 238, 238);
+margin: 10px 0;
+
+}
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    margin-bottom:30px;
+    }
+    
+    .rating > input{
+     display:none;
+    }
+    
+    .rating > label {
+    position: relative;
+    width: 1.1em;
+    font-size: 20px;
+    color: var(--tertiary-color);
+    cursor: pointer;
+    }
+    
+    .rating > label::before{
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+    }
+    
+    .rating > label:hover:before,
+    .rating > label:hover ~ label:before {
+    opacity: 1 !important;
+    }
+    
+    .rating > input:checked ~ label:before{
+    opacity:1;
+    }
+    
+    .rating:hover > input:checked ~ label:before{ 
+    opacity: 0.4;
+     }
+
+label{
+    font-family: var(--font-base);
+    color: var(--gray-color);
+}
+
+     input, textarea{
+        width: 100%;
+        margin-bottom: 30px;
+        outline: none;
+        border: none;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 7px;
+        background-color: rgb(227, 227, 227);
+        font-family: var(--font-base);
+        /* color: var(--secondary-color); */
+     }
+
+     textarea{
+        height: 170px;
+     }
+
+     button{
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--tertiary-color);
+
+        font-weight: 500;
+        color: var(--white-color);
+        outline: none;
+        margin: 2rem 0 0 0 ;
+        font-family: var(--font-base);
+        cursor: pointer;
+    }

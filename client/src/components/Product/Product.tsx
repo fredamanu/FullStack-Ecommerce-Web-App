@@ -38,7 +38,8 @@ const Product: React.FC<Props> = ({
             <img src={image} alt={name} />
             {isBestSeller && (
               <div className="bestseller-tag" style={{ float: 'right' }}>
-                best seller
+                <span>best</span>
+                <span>seller</span>
               </div>
             )}
           </div>

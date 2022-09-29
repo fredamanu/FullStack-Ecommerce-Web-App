@@ -4,6 +4,7 @@ import { useBestSellers } from '../../hooks/fectchData'
 import { State } from '../../types'
 import MotionWrapper from '../../Wrapper/MotionWrapper'
 import Product from '../Product/Product'
+import './BestSellers.css'
 
 const BestSellers = () => {
   const state = useSelector((state: State) => state)

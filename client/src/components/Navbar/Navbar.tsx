@@ -10,8 +10,9 @@ import Cart from '../Cart'
 import { openCart } from '../../redux/actions/cart'
 import './Navbar.css'
 import SearchBar from '../SearchBar/SearchBar'
+import { type } from 'os'
 
-export default function Navbar() {
+const Navbar = () => {
   const [color, setColor] = useState(false)
   const dispatch = useDispatch<any>()
   const state = useSelector((state: State) => state)
@@ -29,7 +30,7 @@ export default function Navbar() {
   }
 
   const handleChangeColor = () => {
-    if (window.scrollY >= 90) {
+    if (window.scrollY >= 50) {
       setColor(true)
     } else {
       setColor(false)
@@ -83,3 +84,5 @@ export default function Navbar() {
     </nav>
   )
 }
+
+export default Navbar

@@ -18,6 +18,7 @@ export default function HomePage() {
   useBestSellers()
   useProducts()
 
+
   return (
     <div className="layout">
       <header>

@@ -30,7 +30,7 @@ const MobileNavbar = () => {
   }
 
   const handleChangeColor = () => {
-    if (window.scrollY >= 90) {
+    if (window.scrollY >= 50) {
       setColor(true)
     } else {
       setColor(false)
