@@ -1,29 +1,24 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Avatar from '@mui/material/Avatar'
 import MenuIcon from '@mui/icons-material/Menu'
-import { HiMenuAlt4, HiX } from 'react-icons/hi'
-import SearchIcon from '@mui/icons-material/Search'
+import { HiX } from 'react-icons/hi'
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined'
 
 import { images } from '../../assets'
 import { State } from '../../types'
 import { openCart } from '../../redux/actions/cart'
-import Cart from '../Cart'
+import Cart from '../Cart/Cart'
+import AccountMenu from '../AccountMenu/AccountMenu'
 
 const MobileNavbar = () => {
+  // @ts-ignore:next-line
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [color, setColor] = useState(false)
-  const [toggle, setToggle] = useState(false)
+  const [openMenu, setOpenMenu] = useState(false)
   const dispatch = useDispatch<any>()
   const state = useSelector((state: State) => state)
   const showCart = state.cart.showCart
   const totalQuantities = state.cart.totalQuantities
-  const isLoggedIn = state.user.isLoggedIn
-  const firstName = state.user.data.firstName
-  const lastName = state.user.data.lastName
-  const name = firstName?.slice(0, 1) as string
-  const name2 = lastName?.slice(0, 1) as string
-  const fullName = name?.concat(name2)
 
   const handleOpenCart = () => {
     dispatch(openCart())
@@ -40,8 +35,8 @@ const MobileNavbar = () => {
   window.addEventListener('scroll', handleChangeColor)
 
   return (
-    <nav className={color ? 'app-navbar-mobile-scroll' : 'app-navbar-mobile'}>
-      {toggle ? (
+    <nav className={'app-navbar-mobile'}>
+      {openMenu ? (
         <div
           className="mobile-nav-container"
           style={{
@@ -51,33 +46,18 @@ const MobileNavbar = () => {
         >
           <div>
             <div className="mobile-menu">
-              <HiX
-                onClick={() => setToggle(false)}
-                className="menu-icon"
-                style={{ fontSize: 35 }}
-              />
+              <HiX onClick={() => setOpenMenu(false)} className="menu-icon" />
               <p>Menu</p>
             </div>
             <div className="mobile-nav-links">
               <ul>
-                {['home', 'about', 'shop', 'bestsellers', 'contact'].map(
-                  (item, index) => (
-                    <li key={item + index} className="flex">
-                      <div />
-                      <a href={item === 'home' ? `/` : `/${item}`}>{item}</a>
-                    </li>
-                  )
-                )}
+                {['home', 'shop', 'contact', "search"].map((item, index) => (
+                  <li key={item + index} className="flex">
+                    <div />
+                    <a href={item === 'home' ? `/` : `/${item}`}>{item}</a>
+                  </li>
+                ))}
               </ul>
-              <div className="sigin-container">
-                {isLoggedIn ? (
-                  <Avatar>{fullName}</Avatar>
-                ) : (
-                  <a href="/signin">
-                    <p>Login</p>
-                  </a>
-                )}
-              </div>
             </div>
           </div>
           <div className="logo-container">
@@ -86,8 +66,8 @@ const MobileNavbar = () => {
             </a>
           </div>
           <div className="mobile-nav-icons">
-            <div className="mobile-nav-search">
-              <SearchIcon sx={{ fontSize: 25 }} />
+          <div className="sigin-container">
+              <AccountMenu />
             </div>
             <div className="cart-icon-container">
               <button
@@ -105,11 +85,7 @@ const MobileNavbar = () => {
       ) : (
         <div className="mobile-nav-container">
           <div className="mobile-menu">
-            <MenuIcon
-              onClick={() => setToggle(true)}
-              className="menu-icon"
-              sx={{ fontSize: 35 }}
-            />
+            <MenuIcon onClick={() => setOpenMenu(true)} className="menu-icon" />
             <p>Menu</p>
           </div>
           <div className="logo-container">
@@ -118,9 +94,10 @@ const MobileNavbar = () => {
             </a>
           </div>
           <div className="mobile-nav-icons">
-            <div className="mobile-nav-search">
-              <SearchIcon sx={{ fontSize: 25 }} />
+            <div className="sigin-container">
+              <AccountMenu />
             </div>
+
             <div className="cart-icon-container">
               <button
                 type="button"

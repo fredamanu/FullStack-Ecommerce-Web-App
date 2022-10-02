@@ -4,10 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import './App.css'
 import HomePage from './pages/HomePage'
-import Login from './pages/Login'
+import SignIn from './pages/SignIn'
 import Order from './pages/Order'
 import ProductDetails from './pages/ProductDetails'
-import Register from './pages/Register'
+import SignUp from './pages/SignUp'
 import Shop from './pages/Shop'
 import Success from './pages/Success'
 
@@ -18,8 +18,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/products/:productName" element={<ProductDetails />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/success" element={<Success />} />
         <Route path="/order" element={<Order />} />
       </Routes>

@@ -10,21 +10,6 @@
   position: relative;
 }
 
-/* @media screen and (max-width: 1200px) {
-    .hair-types-card{
-        width: 300px;
-        height: 300px  
-        
-        }
-} */
-
-/* @media screen and (max-width: 900px) {
-    .hair-types-card{
-        width: 210px;
-        height: 210px  
-        
-        }
-} */
 
 @media screen and (max-width: 900px) {
   .hair-types-container {

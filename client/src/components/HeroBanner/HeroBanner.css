@@ -1,6 +1,4 @@
 .hero-banner-container {
-    /* padding: 100px 40px; */
-    /* background-image: url('https://res.cloudinary.com/defgcg7hn/image/upload/v1662204897/banner/Untitled_design_3_lunh9d.png'); */
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
@@ -12,6 +10,7 @@
     transition: background linear 5s;
     margin-bottom: 150px;
     background-color: black;
+    margin-top: 120px;
     
   }
   .hero-banner-container .slogan {
@@ -54,13 +53,6 @@
     margin-top: 4px;
     color: white;
   }
-  /* .hero-banner-image {
-    position: absolute;
-    top: 5%;
-    right: 15%;
-    width: 550px;
-    height: 400px;
-  } */
   
   .desc {
     position: absolute;

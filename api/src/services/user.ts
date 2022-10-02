@@ -8,7 +8,11 @@ const findOrCreate = async (user: UserDocument) => {
     const newUser = await user.save()
     return newUser
   }
-  return foundUser
+  const updatedFoundUser = await User.findOneAndUpdate(
+    { email: user.email },
+    { image: user.image }
+  )
+  return updatedFoundUser
 }
 
 const findUserById = async (userId: string): Promise<UserDocument> => {

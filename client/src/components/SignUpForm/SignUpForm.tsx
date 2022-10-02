@@ -1,21 +1,24 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { toast } from 'react-hot-toast'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { Paper, Divider } from '@mui/material'
 import Form from 'react-bootstrap/Form'
 
-import GoogleLogIn from '../components/GoogleLogIn'
-import { userLogin } from '../redux/actions/user'
-import { Footer } from '../components'
+import GoogleLogIn from '../../components/GoogleLogIn'
+import { userLogin } from '../../redux/actions/user'
+import toast from 'react-hot-toast'
+import './SignUpForm.css'
 
 type FormData = {
   email: string
   password: string
+  firstName: string
+  lastName: string
 }
 
-export default function Login() {
+const SignUpForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {
@@ -26,32 +29,39 @@ export default function Login() {
 
   const onSubmit = handleSubmit(async (data) => {
     await axios
-      .post('http://localhost:5000/api/v1/users/login', data)
+      .post('http://localhost:5000/api/v1/users/register', data)
       .then((response) => {
+        console.log(response)
         dispatch(userLogin(response.data))
-        toast(`Hello ${response.data.firstName}`)
         navigate('/')
       })
       .catch((error) => {
-        console.log(error.response.data)
-        if (error.response.data.message === `user ${data.email} not found`) {
-          toast.error('No account is set up for this email. Please Signup')
-          navigate('/register')
-        } else if (error.response.data.message === 'password is incorrect') {
-          toast.error('Wrong email or password. Please try again')
-        } else {
-          toast('Log in failed. Please try again')
-        }
+        console.log(error.response.data.message)
       })
   })
 
   return (
-    <div className="layout login-page">
-      <main className="main-container" >
-      <div className="login-wrapper">
-        <p className="login-title">Sign in</p>
+    <Paper elevation={3} className="login-wrapper">
+      <div>
+        <p className="login-title">Sign up</p>
         <Form onSubmit={onSubmit}>
           <div>
+            <div className="login-fields-container">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                className="login-inputs"
+                type="text"
+                {...register('firstName')}
+              />
+            </div>
+            <div className="login-fields-container">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                className="login-inputs"
+                type="text"
+                {...register('lastName')}
+              />
+            </div>
             <div className="login-fields-container">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -95,22 +105,18 @@ export default function Login() {
               Continue
             </button>
           </div>
+          <Divider>Or</Divider>
           <GoogleLogIn />
         </Form>
         <div className="login-actions-container">
-          <a href="/register">
-            <p className="p1">Don't have an account?</p>
-            <p className="p2">Sign up</p>
-          </a>
-          <a href="/forgot-password">
-            <p className="p3">Forgot your password</p>
+          <a href="/signin">
+            <p className="p1">Already have an account?</p>
+            <p className="p2">Sign in</p>
           </a>
         </div>
       </div>
-      </main>
-      <footer>
-        <Footer />
-      </footer>
-    </div>
+    </Paper>
   )
 }
+
+export default SignUpForm

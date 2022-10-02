@@ -7,3 +7,10 @@ export const userLogin = (user: Partial<User>) => {
     payload: user,
   }
 }
+
+export const userLogOut = () => {
+  return {
+    type: actions.USER_LOGOUT,
+    
+  }
+}

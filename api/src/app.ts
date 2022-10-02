@@ -25,49 +25,51 @@ app.set('port', process.env.PORT || 3000)
 // Global middleware
 app.use(apiContentType)
 app.use(express.json())
-
 app.use(cors())
 
-// app.use(
-//   session({ secret: 'This is a secret', resave: true, saveUninitialized: true })
-// )
-// app.use(passport.initialize())
-// app.use(passport.session())
+//passport middleware config
+app.use(
+  session({ secret: 'This is a secret', resave: true, saveUninitialized: true })
+)
+app.use(passport.initialize())
+app.use(passport.session())
 
-// passport.serializeUser((user: any, done: any) => {
-//   return done(null, user)
-// })
+//Passport
+passport.serializeUser((user: any, done: any) => {
+  return done(null, user)
+})
 
-// passport.deserializeUser((user: any, done: any) => {
-//   return done(null, user)
-// })
+passport.deserializeUser((user: any, done: any) => {
+  return done(null, user)
+})
 
-// passport.use(
-//   new GoogleTokenStrategy(
-//     {
-//       clientID: GOOGLE_CLIENT_ID,
-//     },
-//     async function (accessToken: any, googleId: any, done: any) {
-//       const newUser = new User({
-//         firstName: accessToken.payload.given_name,
-//         lastName: accessToken.payload.family_name,
-//         email: accessToken.payload.email,
-//       })
-//       const user = await UserServices.findOrCreate(newUser)
-//       done(null, user)
-//     }
-//   )
-// )
+passport.use(
+  new GoogleTokenStrategy(
+    {
+      clientID: GOOGLE_CLIENT_ID,
+    },
+    async function (accessToken: any, googleId: any, done: any) {
+      const newUser = new User({
+        firstName: accessToken.payload.given_name,
+        lastName: accessToken.payload.family_name,
+        email: accessToken.payload.email,
+        image: accessToken.payload.picture,
+      })
 
-// app.post(
-//   '/auth/google',
-//   passport.authenticate('google-id-token'),
-//   function (req, res) {
-//     // do something with req.user
-//     const isAuthenticated = req.isAuthenticated()
-//     res.json(req.user)
-//   }
-// )
+      const user = await UserServices.findOrCreate(newUser)
+      done(null, user)
+    }
+  )
+)
+
+app.post(
+  '/auth/google',
+  passport.authenticate('google-id-token'),
+  function (req, res) {
+    // do something with req.user
+    res.json(req.user)
+  }
+)
 
 // Set up routers
 app.use('/api/v1/movies', movieRouter)

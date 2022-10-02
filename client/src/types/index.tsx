@@ -24,6 +24,7 @@ export type ActionTypes =
   | { type: typeof actions.DECREASE_CART_ITEM_QUANTITY; payload: string }
   | { type: typeof actions.CART_RESET }
   | { type: typeof actions.USER_LOGIN; payload: User }
+  | { type: typeof actions.USER_LOGOUT }
 
 export type ShippingAddress = {
   name: string
@@ -59,8 +60,7 @@ export type User = {
 }
 
 export type UserInfo = {
-  data: Partial<User>
-  isLoggedIn: boolean
+  data: Partial<User> | null
 }
 
 export type Quantity = {

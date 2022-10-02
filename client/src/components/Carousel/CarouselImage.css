@@ -1,19 +1,15 @@
-
-.carousel{
+.carousel {
   height: 650px;
 }
-/* .carousel-item {
-    transition: opacity 1s ease-in-out !important;
-  } */
-  .carousel-item img{
-   height: 650px;
-   width: 100%;
-   object-fit: cover;
-  }
 
-  .carousel-caption{
-    position: absolute;
-    top: 100px;
-    left: 70px;
-  }
+.carousel-item img {
+  height: 650px;
+  width: 100%;
+  object-fit: cover;
+}
 
+.carousel-caption {
+  position: absolute;
+  top: 150px;
+  left: 70px;
+}

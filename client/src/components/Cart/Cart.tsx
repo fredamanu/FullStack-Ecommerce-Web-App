@@ -1,4 +1,5 @@
 import React from 'react'
+import Divider from '@mui/material/Divider'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
@@ -8,14 +9,15 @@ import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined'
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined'
 import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined'
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
-import { State } from '../types'
+import { State } from '../../types'
 import {
   closeCart,
   decreaseCartItemQuantity,
   increaseCartItemQuantity,
   removeFromCart,
-} from '../redux/actions/cart'
-import getStripe from '../stripe/getStripe'
+} from '../../redux/actions/cart'
+import getStripe from '../../stripe/getStripe'
+import './Cart.css'
 
 export default function Cart() {
   const navigate = useNavigate()
@@ -23,7 +25,8 @@ export default function Cart() {
   const { totalQuantities, cartItems, totalPrice } = useSelector(
     (state: State) => state.cart
   )
-  const { isLoggedIn } = useSelector((state: State) => state.user)
+    // @ts-ignore:next-line
+  const user = JSON.parse(localStorage.getItem("user"))
 
   const handleCloseCart = () => {
     dispatch(closeCart())
@@ -42,7 +45,7 @@ export default function Cart() {
   }
 
   const handleCheckout = async () => {
-    if (isLoggedIn === true) {
+    if (user) {
       const stripe = await getStripe()
       await axios
         .post('http://localhost:5000/api/v1/payments', {
@@ -57,22 +60,18 @@ export default function Cart() {
           console.log(err.message)
         })
     } else {
-      navigate('/login')
+      navigate('/signin')
     }
   }
 
   return (
     <div className="cart-wrapper">
       <div className="cart-container">
-        <button
-          type="button"
-          className="cart-heading"
-          onClick={handleCloseCart}
-        >
+        <div role="button" className="cart-heading" onClick={handleCloseCart}>
           <NavigateBeforeOutlinedIcon />
           <span className="heading">Your Cart</span>
           <span className="cart-num-items">({totalQuantities} items)</span>
-        </button>
+        </div>
         {cartItems.length < 1 && (
           <div className="empty-cart">
             <LocalMallOutlinedIcon sx={{ fontSize: '150px' }} />
@@ -88,55 +87,79 @@ export default function Cart() {
           {cartItems.length >= 1 &&
             cartItems.map((item) => {
               return (
-                <div className="product" key={item._id}>
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="cart-product-image"
-                  />
-                  <div className="item-desc">
-                    <div className="flex top">
-                      <h5>{item.name}</h5>
-                      <h4>NOK{item.price}</h4>
-                    </div>
-                    <div className="flex bottom">
-                      <div>
-                        <p className="quantity-desc">
-                          <span
-                            className="minus"
-                            onClick={() => {
-                              handleDecreaseCartItemQty(item._id)
-                            }}
-                          >
-                            <RemoveOutlinedIcon />
-                          </span>
-                          <span className="num">{item.qty}</span>
-                          <span
-                            className="plus"
-                            onClick={() => {
-                              handleIncreaseCartItemQty(item._id)
-                            }}
-                          >
-                            <AddOutlinedIcon />
-                          </span>
-                        </p>
-                      </div>
-                      <button
-                        type="button"
-                        className="remove-item"
-                        onClick={() => {
-                          handleRemoveItemFromCart(item._id)
+                <div>
+                  <div className="product" key={item._id}>
+                    <div style={{ width: 180, height: 150, marginTop: -30 }}>
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="cart-product-image"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
                         }}
-                      >
-                        <HighlightOffOutlinedIcon />
-                      </button>
+                      />
                     </div>
+
+                    <div className="item-desc">
+                      <div className="">
+                        <h5 style={{ fontSize: 16 }}>{item.name}</h5>
+                        <h4 style={{ fontSize: 16 }}>€ {item.price} EUR</h4>
+                      </div>
+                      <div className="">
+                        <div>
+                          <p className="quantity-desc">
+                            <span
+                              className="minus"
+                              onClick={() => {
+                                handleDecreaseCartItemQty(item._id)
+                              }}
+                            >
+                              <RemoveOutlinedIcon />
+                            </span>
+                            <span className="num">{item.qty}</span>
+                            <span
+                              className="plus"
+                              onClick={() => {
+                                handleIncreaseCartItemQty(item._id)
+                              }}
+                            >
+                              <AddOutlinedIcon />
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="remove-item"
+                      onClick={() => {
+                        handleRemoveItemFromCart(item._id)
+                      }}
+                    >
+                      <HighlightOffOutlinedIcon />
+                    </button>
                   </div>
+                  <Divider style={{ background: 'gray' }} />
                 </div>
               )
             })}
+          <Divider />
+          <div style={{ marginTop: 50 }}>
+            <div className="total">
+              <h3>Subtotal:</h3>
+              <h3>€{totalPrice.toFixed(2)}</h3>
+            </div>
+            <div className="btn-container">
+              <button type="button" className="btn" onClick={handleCheckout}>
+                CheckOut
+              </button>
+            </div>
+          </div>
         </div>
-        {cartItems.length >= 1 && (
+
+        {/* {cartItems.length >= 1 && (
           <div className="cart-bottom">
             <div className="total">
               <h3>Subtotal:</h3>
@@ -148,7 +171,7 @@ export default function Cart() {
               </button>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   )

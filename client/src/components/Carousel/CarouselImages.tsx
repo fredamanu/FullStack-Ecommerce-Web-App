@@ -11,7 +11,6 @@ const CarouselImages = () => {
           className="d-block w-100"
           src="https://res.cloudinary.com/defgcg7hn/image/upload/v1662204897/banner/Untitled_design_3_lunh9d.png"
           alt="First slide"
-          style={{ height: 650 }}
         />
         <div className="carousel-caption text-left">
           <div style={{ textAlign: 'left' }}>
@@ -40,19 +39,19 @@ const CarouselImages = () => {
 
         <div className="carousel-caption two text-left">
           <div style={{ textAlign: 'left' }}>
-            <p className="slogan" style={{ color: 'black' }}>
+            <p className="slogan" style={{ color: '#46364a' }}>
               Great Hair is Divine!
             </p>
-            <h4 style={{ color: 'black' }}>Winter Sale</h4>
-            <h3 style={{ color: 'black' }}>20% Off First Orders</h3>
-            <h5 style={{ color: 'black' }}>Use Code: App2022</h5>
+            <h4 style={{ color: '#000' }}>Winter Sale</h4>
+            <h3 style={{ color: '#000' }}>20% Off First Orders</h3>
+            <h5 style={{ color: '#000' }}>Use Code: App2022</h5>
             <div>
               <a href="/shop">
                 <button type="button">Shop Now</button>
               </a>
               <div className="desc">
-                <h5 style={{ color: 'black' }}>Description</h5>
-                <p id="desc-p" style={{ color: 'black' }}>
+                <h5 style={{ color: '#46364a' }}>Description</h5>
+                <p id="desc-p" style={{ color: '#46364a' }}>
                   Best wash and go combo on the market
                 </p>
               </div>
@@ -77,7 +76,7 @@ const CarouselImages = () => {
               <a href="/shop">
                 <button type="button">Shop Now</button>
               </a>
-              <div className="desc2">
+              <div className="desc">
                 <h5>Description</h5>
                 <p id="desc-p">Best wash and go combo on the market</p>
               </div>

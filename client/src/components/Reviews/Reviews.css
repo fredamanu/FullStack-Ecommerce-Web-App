@@ -66,7 +66,7 @@ label{
     color: var(--gray-color);
 }
 
-     input, textarea{
+input, textarea{
         width: 100%;
         margin-bottom: 30px;
         outline: none;

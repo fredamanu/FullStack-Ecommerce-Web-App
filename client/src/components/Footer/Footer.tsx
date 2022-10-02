@@ -18,6 +18,7 @@ return (
     <div className="footer-navigation">
       <div className="socials">
         <div>
+          <img src={images.logo}/>
           <h5>Look Great. Feel Awesome!!</h5>
           <h6>©{year} Naturally Curly Haircare</h6>
           <div>
@@ -52,7 +53,7 @@ return (
       <div className="c-t-a">
         <h5>Subscribe</h5>
         <h6>Join our NC Network for updates and offers!</h6>
-        <form method="post">
+        <form method="post" className="subscribe-form">
           <input placeholder="Your Email" name="email" />
           <button type="submit">OK</button>
         </form>

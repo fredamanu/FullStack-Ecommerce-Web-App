@@ -63,17 +63,17 @@ const ProductDetail: React.FC<Props> = ({ product, products }) => {
               style={{
                 width: '40%',
                 height: 750,
-                // backgroundColor: 'red',
+
+                // backgroundColor: 'yellow',
               }}
               className="flex-one"
             >
               <div
                 style={{
-                  width: '100%',
+                  width: '85%',
                   minWidth: 350,
                   // backgroundColor: 'red',
-                  marginRight: 'auto',
-                  marginLeft: 'auto',
+                  margin: '0 auto',
                 }}
               >
                 <img
@@ -81,10 +81,9 @@ const ProductDetail: React.FC<Props> = ({ product, products }) => {
                   alt={product.name}
                   style={{
                     width: '100%',
-                    height: '50%',
-                    objectFit: 'cover',
-                    marginRight: 'auto',
-                    marginLeft: 'auto',
+
+                    objectFit: 'contain',
+                    margin: '20px auto 0',
                   }}
                 />
               </div>
@@ -100,13 +99,13 @@ const ProductDetail: React.FC<Props> = ({ product, products }) => {
               <h1>{product.name}</h1>
               <div className="reviews">
                 <div>
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
+                  <StarOutlineOutlinedIcon />
+                  <StarOutlineOutlinedIcon />
+                  <StarOutlineOutlinedIcon />
+                  <StarOutlineOutlinedIcon />
                   <StarOutlineOutlinedIcon />
                 </div>
-                <p>(20)</p>
+                <p>(0)</p>
               </div>
               <ProductDetailTabs product={product} />
               <p className="price">€ {product.price} EUR</p>
@@ -196,7 +195,7 @@ const ProductDetail: React.FC<Props> = ({ product, products }) => {
           <Reviews />
         </div>
       </div>
-      <div className="maylike-products-wrapper">
+      {/* <div className="maylike-products-wrapper">
         <h2>You may also like</h2>
         <div className="marquee">
           <div className="maylike-products-container track">
@@ -205,7 +204,7 @@ const ProductDetail: React.FC<Props> = ({ product, products }) => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

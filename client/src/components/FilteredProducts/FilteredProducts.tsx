@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
+import Divider from '@mui/material/Divider'
 
 import { useProducts } from '../../hooks/fectchData'
 import { State } from '../../types'
@@ -30,7 +31,6 @@ const FilteredProducts = () => {
 
   return (
     <div>
-      {' '}
       <div className="products-filter">
         {['All', 'Conditioner', 'Oil', 'Treatment', 'Shampoo', 'Butter'].map(
           (item, index) => (
@@ -46,10 +46,21 @@ const FilteredProducts = () => {
           )
         )}
       </div>
+      <Divider
+        style={{ width: '90%', background: '#46364a', margin: '0 auto' }}
+      />
       <motion.div
         className="products-container"
         animate={animateCard}
         transition={{ duration: 0.5, delayChildren: 0.5 }}
+        style={{
+          display: 'flex',
+          gap: 20,
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          margin: '0px auto 100px auto',
+          width: '80%',
+        }}
       >
         {filteredProducts.map((product) => {
           return <Product key={product._id} product={product} />
