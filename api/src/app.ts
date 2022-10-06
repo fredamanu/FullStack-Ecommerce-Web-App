@@ -76,7 +76,7 @@ app.use('/api/v1/movies', movieRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/products', productRouter)
 app.use('/api/v1/orders', orderRouter)
-app.use('/api/v1/payments', paymentRouter)
+app.use('/api/v1/stripe', paymentRouter)
 
 // Custom API error handler
 app.use(apiErrorHandler)

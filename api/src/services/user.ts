@@ -1,6 +1,25 @@
 import User, { UserDocument } from '../models/User'
 import { NotFoundError } from '../helpers/apiError'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import { JWT_SECRET } from '../util/secrets'
+
+const findOrCreateUsingRegister = async (user: UserDocument) => {
+  const foundUser = await User.findOne({ email: user.email })
+  if (!foundUser) {
+    const foundUser = await user.save()
+    const token = jwt.sign(
+      { email: foundUser.email, id: foundUser._id },
+      JWT_SECRET
+    )
+    return { foundUser, token }
+  }
+  const token = jwt.sign(
+    { email: foundUser.email, id: foundUser._id },
+    JWT_SECRET
+  )
+  return { foundUser, token }
+}
 
 const findOrCreate = async (user: UserDocument) => {
   const foundUser = await User.findOne({ email: user.email })
@@ -23,14 +42,23 @@ const findUserById = async (userId: string): Promise<UserDocument> => {
   return foundUser
 }
 
-const findUserByEmail = async (user: UserDocument): Promise<UserDocument> => {
+const findUserByEmail = async (
+  user: UserDocument
+): Promise<{
+  foundUser: UserDocument
+  token: string
+}> => {
   const foundUser = await User.findOne({ email: user.email })
   if (!foundUser) {
     throw new NotFoundError(`user ${user.email} not found`)
   } else {
     const match = await bcrypt.compare(user.password, foundUser.password)
     if (match === true) {
-      return foundUser
+      const token = jwt.sign(
+        { email: foundUser.email, id: foundUser._id },
+        JWT_SECRET
+      )
+      return { foundUser, token }
     }
     throw new NotFoundError('password is incorrect')
   }
@@ -67,6 +95,7 @@ const deleteUser = async (userId: string): Promise<UserDocument> => {
 
 export default {
   findOrCreate,
+  findOrCreateUsingRegister,
   findUserById,
   findUserByEmail,
   findAllUsers,

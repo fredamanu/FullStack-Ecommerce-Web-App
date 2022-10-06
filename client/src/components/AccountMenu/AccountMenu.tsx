@@ -100,13 +100,13 @@ const AccountMenu = () => {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <MenuItem>
+            <MenuItem onClick={()=> navigate(`/account/${user._id}`)}>
               <Avatar
                 sx={{ fontSize: '33px', marginRight: '5px', color: '#6b7688' }}
-              />{' '}
+              />
               My Account
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={()=> navigate(`/orders/${user._id}`)}>
               <ListAltIcon
                 sx={{ fontSize: '33px', marginRight: '5px', color: '#6b7688' }}
               />
@@ -114,7 +114,7 @@ const AccountMenu = () => {
             </MenuItem>
             <Divider style={{ background: 'grey' }} />
 
-            <MenuItem>
+            <MenuItem onClick={()=> navigate("/account")}>
               <ListItemIcon>
                 <Settings
                   sx={{

@@ -10,7 +10,7 @@ import {
 
 const router = express.Router()
 
-router.get('/', findAllOrders)
+router.get('/:userId', findAllOrders)
 router.get('/:orderId', findOrderById)
 router.post('/:userId', createOrder)
 router.put('/:orderId', updateOrder)

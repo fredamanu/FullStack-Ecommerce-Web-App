@@ -4,11 +4,11 @@ import Order, { OrderDocument } from '../models/Order'
 import UserServices from '../services/user'
 
 const createOrder = async (order: OrderDocument): Promise<UserDocument> => {
-  await order.save()
+  const newOrder = await order.save()
   const user = await UserServices.findUserById(order.userId)
-  user.orders.push(order._id)
+  user.orders.push(newOrder._id)
   await user.save()
-  return user
+  return newOrder._id
 }
 
 const findOrderById = async (orderId: string): Promise<OrderDocument> => {

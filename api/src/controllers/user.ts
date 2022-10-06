@@ -19,7 +19,7 @@ export const findOrCreateUserUsingRegister = async (
       email,
       password: hash,
     })
-    res.json(await UserServices.findOrCreate(user))
+    res.json(await UserServices.findOrCreateUsingRegister(user))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

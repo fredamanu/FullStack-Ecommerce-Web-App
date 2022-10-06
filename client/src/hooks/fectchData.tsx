@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { fetchProducts } from '../redux/actions/fetchProducts'
 import { fetchProduct } from '../redux/actions/fetchProduct'
 import { fetchBestSellers } from '../redux/actions/fetchBestSellers'
+import { fetchOrders } from '../redux/actions/fetchOrders'
 
 export function useProducts() {
   const dispatch = useDispatch<any>()
@@ -22,5 +23,12 @@ export function useBestSellers() {
   const dispatch = useDispatch<any>()
   useEffect(() => {
     dispatch(fetchBestSellers())
+  }, [dispatch])
+}
+
+export function useOrders(userId:string) {
+  const dispatch = useDispatch<any>()
+  useEffect(() => {
+    dispatch(fetchOrders(userId))
   }, [dispatch])
 }

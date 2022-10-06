@@ -1,0 +1,59 @@
+.account-content{
+    margin: 200px 0 150px;
+}
+.account-content-flex-container h3{
+    font-size: 40px;
+    font-weight: 800;
+    color:#324d67 ;
+}
+
+.account-content-flex-container {
+ width: 80%;
+ margin: 50px auto;
+ display: flex;
+ justify-content: center;
+ padding-left: 50px;
+ flex-direction: column;
+
+
+}
+
+.account-content-cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    
+}
+
+.flex-item {
+ display: flex;
+ width: 300px;
+ height: 100px;
+ border: 1px solid rgb(230, 229, 229);
+ border-radius: 12px;
+ transition: all 0.3s ease-in-out;
+ padding: 1rem;
+}
+
+.flex-item:hover{
+    background-color: rgba(149, 149, 149, 0.7);
+}
+
+.flex-item h6{
+    color: var(--gray-color);
+    font-size: 18px;
+}
+
+.flex-item p {
+ text-transform: none !important;
+ margin-top: -8px;
+ line-height: 1.2;
+ color: var(--gray-color);
+ font-size: 14px;
+}
+
+.flex-item svg {
+ font-size: 40px;
+ margin-right: 10px;
+ color: var(--tertiary-color);
+}

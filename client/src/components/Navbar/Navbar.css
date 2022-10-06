@@ -151,14 +151,15 @@ margin-right: 2px;
 .cart-item-qty {
   position: absolute;
   right: -1px;
-  font-size: 12px;
+  font-size: 13px;
   color: #eee;
-  background-color: #f02d34;
-  width: 18px;
-  height: 18px;
+  background-color: var(--tertiary-color);
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   text-align: center;
   font-weight: 600;
+  
 }
 
 .mobile-nav-container {

@@ -6,11 +6,12 @@ import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
 import StarIcon from '@mui/icons-material/Star'
 
 import Product from '../Product/Product'
-import { ProductDocument } from '../../../../api/src/models/Product'
+import { ProductDocument } from '../../types'
 import { State } from '../../types'
 import {
   decreaseQuantity,
   increaseQuantity,
+  resetQuantity,
 } from '../../redux/actions/quantity'
 import { addToCart, openCart } from '../../redux/actions/cart'
 import './ProductDetail.css'
@@ -44,10 +45,12 @@ const ProductDetail: React.FC<Props> = ({ product, products }) => {
     }
 
     dispatch(addToCart(cartItem))
+    dispatch(resetQuantity())
   }
 
   const handleBuyNow = () => {
     addProductToCart()
+    dispatch(resetQuantity())
     dispatch(openCart())
   }
 

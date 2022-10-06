@@ -5,11 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import HomePage from './pages/HomePage'
 import SignIn from './pages/SignIn'
-import Order from './pages/Order'
 import ProductDetails from './pages/ProductDetails'
 import SignUp from './pages/SignUp'
 import Shop from './pages/Shop'
-import Success from './pages/Success'
+import SuccessPage from './pages/SuccessPage'
+import Account from './pages/Account'
+import Orders from './pages/Orders'
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
         <Route path="/products/:productName" element={<ProductDetails />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/order" element={<Order />} />
+        <Route path="/success" element={<SuccessPage />} />
+        <Route path="/account/:userId" element={<Account />} />
+        <Route path="/orders/:userId" element={<Orders />} />
       </Routes>
     </div>
   )

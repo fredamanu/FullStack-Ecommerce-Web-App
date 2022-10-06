@@ -4,33 +4,53 @@ import { productSchema, ProductDocument } from './Product'
 
 export type ShippingAddress = {
   name: string
-  address: string
+  addressLine1: string
+  addressLine2: string
   city: string
   postalCode: number
   country: string
 }
 
+export type OrderItem = {
+  _id: string
+  name: string
+  image: string
+  price: number
+  qty: number
+}
+
 export type OrderDocument = Document & {
   userId: string
-  orderItems: ProductDocument[]
+  customerId: string
+  paymentIntentId: string
+  orderItems: OrderItem[]
   shippingAddress: ShippingAddress
   paymentMethod: string
   taxPrice: number
   shippingPrice: number
-  totalPrice: number
-  isPaid: boolean
-  paidAt: string
+  shippingRate: string
+  totalAmount: number
+  paymentStatus: string
   isDelivered: boolean
   deliveredAt: string
 }
 
 const shippingAddressSchema = new mongoose.Schema({
-  name: { type: String, require: true },
-  address: { type: String, require: true },
-  city: { type: String, require: true },
-  postalCode: { type: Number, require: true },
-  country: { type: String, require: true },
+  name: { type: String },
+  addressLine1: { type: String },
+  addressLine2: { type: String },
+  city: { type: String },
+  postalCode: { type: Number },
+  country: { type: String },
 })
+
+const orderItemSchema = {
+  _id: String,
+  name: String,
+  image: String,
+  price: Number,
+  qty: Number,
+}
 
 const orderSchema = new mongoose.Schema(
   {
@@ -39,45 +59,44 @@ const orderSchema = new mongoose.Schema(
       required: true,
       ref: 'User',
     },
+    customerId: {
+      type: String,
+    },
+    paymentIntentId: {
+      type: String,
+    },
     orderItems: {
-      type: [productSchema],
-      required: true,
+      type: [orderItemSchema],
     },
     shippingAddress: {
       type: shippingAddressSchema,
-      required: true,
     },
     paymentMethod: {
       type: String,
-      default: 'Credit Card',
-      required: true,
+      default: 'Card',
     },
     taxPrice: {
       type: Number,
       default: 0.0,
-      required: true,
     },
     shippingPrice: {
       type: Number,
       default: 0.0,
-      required: true,
     },
-    totalPrice: {
+    shippingRate: {
+      type: String,
+      default: 'shr_1LcsMGG5HlxfACqmeW3MWHhW',
+    },
+    totalAmount: {
       type: Number,
       default: 0.0,
-      required: true,
     },
-    isPaid: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    paidAt: {
-      type: Date,
+    paymentStatus: {
+      type: String,
     },
     isDelivered: {
       type: Boolean,
-      required: true,
+
       default: false,
     },
     deliveredAt: {

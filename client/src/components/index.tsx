@@ -13,3 +13,6 @@ export { default as Reviews } from './Reviews/Reviews'
 export { default as SignInForm } from './SignInForm/SignInForm'
 export { default as SignUpForm } from './SignUpForm/SignUpForm'
 export {default as AccountMenu} from "./AccountMenu/AccountMenu"
+export {default as Success} from "./Success/Success"
+export {default as AccountContent} from "./AccountContent/AccountContent"
+export {default as OrderContent} from "./OrderContent/OrderContent"

@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
 import StarIcon from '@mui/icons-material/Star'
 
-import { ProductDocument } from '../../../../api/src/models/Product'
+import { ProductDocument } from '../../types'
 import './Product.css'
 import { addToCart } from '../../redux/actions/cart'
 import { State } from '../../types'
+import { resetQuantity } from '../../redux/actions/quantity'
 
 type Props = {
   product: ProductDocument
@@ -30,6 +31,7 @@ const Product: React.FC<Props> = ({
     }
 
     dispatch(addToCart(cartItem))
+    dispatch(resetQuantity())
   }
   return (
     <div
@@ -53,42 +55,13 @@ const Product: React.FC<Props> = ({
           <StarOutlineOutlinedIcon />
           <p style={{ display: 'inline-block' }}>(0)</p>
         </div>
-        <div className="add-to-cart-btn" onClick={handleAddToCart}>
+        
+      </a>
+      <div className="add-to-cart-btn" onClick={handleAddToCart}>
           add to cart
         </div>
-      </a>
     </div>
-    // <div className="product-flex-container">
-    //   <Link to={url} className="product-flex">
-    //     <div className="section-one">
-    //       <div>
-    //         <img src={image} alt={name} />
-    //         {isBestSeller && (
-    //           <div className="bestseller-tag" style={{ float: 'right' }}>
-    //             <span>best</span>
-    //             <span>seller</span>
-    //           </div>
-    //         )}
-    //       </div>
-
-    //       <p className="product-name" id="product-name">
-    //         {name}
-    //       </p>
-    //       <p className="product-price">€ {price} EUR</p>
-    //       <div className="star-icon-container">
-    //         <StarIcon />
-    //         <StarIcon />
-    //         <StarIcon />
-    //         <StarIcon />
-    //         <StarOutlineOutlinedIcon />
-    //         <p style={{ display: 'inline-block' }}>127</p>
-    //       </div>
-    //     </div>
-    //   </Link>
-    //   <div className="add-to-cart-btn" onClick={handleAddToCart}>
-    //     add to cart
-    //   </div>
-    // </div>
+    
   )
 }
 

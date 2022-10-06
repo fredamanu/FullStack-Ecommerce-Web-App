@@ -31,8 +31,8 @@ const SignUpForm = () => {
     await axios
       .post('http://localhost:5000/api/v1/users/register', data)
       .then((response) => {
-        console.log(response)
-        dispatch(userLogin(response.data))
+        console.log(response.data)
+        dispatch(userLogin(response.data.foundUser))
         navigate('/')
       })
       .catch((error) => {

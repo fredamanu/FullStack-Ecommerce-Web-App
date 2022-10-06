@@ -26,12 +26,11 @@ const AuthForm = () => {
     formState: { errors },
   } = useForm<FormData>()
 
-  const onSubmit = handleSubmit(async (data, url) => {
+  const onSubmit = handleSubmit(async (data) => {
     await axios
       .post('http://localhost:5000/api/v1/users/login', data)
-      .then((response) => {
-        dispatch(userLogin(response.data))
-        toast(`Hello ${response.data.firstName}`)
+      .then((response) => {  
+        dispatch(userLogin(response.data.foundUser))
         navigate('/')
       })
       .catch((error) => {

@@ -30,6 +30,7 @@ export const cart = (state = initialState, action: ActionTypes) => {
           `${action.payload.qty} ${action.payload.name} added to cart`,
           {
             icon: '👏',
+            position: "bottom-left"
           }
         )
         return {
@@ -44,6 +45,7 @@ export const cart = (state = initialState, action: ActionTypes) => {
         `${action.payload.qty} ${action.payload.name} added to cart`,
         {
           icon: '👏',
+          position: "bottom-left"
         }
       )
       return {
@@ -119,6 +121,7 @@ export const cart = (state = initialState, action: ActionTypes) => {
         `${foundProductToRemove.qty} ${foundProductToRemove.name} removed from cart`,
         {
           icon: '😔',
+          position: "bottom-left"
         }
       )
       return {

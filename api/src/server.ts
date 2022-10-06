@@ -9,6 +9,7 @@ const mongoUrl = MONGODB_URI
 
 mongoose
   .connect(mongoUrl, {
+    dbName: 'database',
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

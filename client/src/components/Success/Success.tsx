@@ -1,18 +1,10 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import { BsBagCheckFill } from 'react-icons/bs'
-import { cartReset } from '../redux/actions/cart'
-import Fireworks from '../utils/Fireworks'
+import { Link } from 'react-router-dom'
 
-export default function Success() {
-  const dispatch = useDispatch<any>()
-  useEffect(() => {
-    localStorage.clear()
-    dispatch(cartReset())
-    Fireworks()
-  }, [dispatch])
+import "./Success.css"
 
+const Success = () => {
   return (
     <div className="success-wrapper">
       <div className="success">
@@ -24,9 +16,9 @@ export default function Success() {
           Check your email inbox for the order receipt
         </p>
         <p className="description">
-          If you have any questions, please email{' '}
+          If you have any questions, please email
           <a className="email" href="mailto:order@example.com">
-            order@example.com
+            info@naturallycurly.com
           </a>
         </p>
         <Link to="/">
@@ -38,3 +30,5 @@ export default function Success() {
     </div>
   )
 }
+
+export default Success

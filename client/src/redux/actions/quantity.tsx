@@ -11,3 +11,10 @@ export const decreaseQuantity = () => {
     type: actions.DECREASE_QUANTITY,
   }
 }
+
+export const resetQuantity = () => {
+  return {
+    type: actions.RESET_QUANTITY,
+  }
+}
+

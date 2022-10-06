@@ -10,30 +10,9 @@ export const createOrder = async (
   next: NextFunction
 ) => {
   try {
-    const {
-      orderItems,
-      shippingAddress,
-      paymentMethod,
-      taxPrice,
-      shippingPrice,
-      totalPrice,
-      isPaid,
-      paidAt,
-      isDelivered,
-      deliveredAt,
-    } = req.body
     const order = new Order({
       userId: req.params.userId,
-      orderItems,
-      shippingAddress,
-      paymentMethod,
-      taxPrice,
-      shippingPrice,
-      totalPrice,
-      isPaid,
-      paidAt,
-      isDelivered,
-      deliveredAt,
+      orderItems: req.body.cartItems,
     })
     res.json(await OrderServices.createOrder(order))
   } catch (error) {
@@ -67,7 +46,8 @@ export const findAllOrders = async (
   next: NextFunction
 ) => {
   try {
-    res.json(await OrderServices.findAllOrders(req.params.userId))
+    const orders = await OrderServices.findAllOrders(req.params.userId)
+    res.json(orders)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

@@ -6,6 +6,7 @@ import { bestsellers } from './bestsellers'
 import { quantity } from './quanity'
 import { cart } from './cart'
 import { user } from './user'
+import {orders} from "./orders"
 
 const rootReducer = combineReducers({
   products,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   quantity,
   cart,
   user,
+  orders,
 })
 
 export default rootReducer

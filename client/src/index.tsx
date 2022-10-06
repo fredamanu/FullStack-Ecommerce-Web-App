@@ -12,7 +12,7 @@ import store from './redux/store'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-const clientId = process.env.REACT_APP_CLIENT_ID as string
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID as string
 const container = document.getElementById('root')
 const root = createRoot(container!)
 
