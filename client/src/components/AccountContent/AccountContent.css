@@ -2,6 +2,7 @@
     margin: 200px 0 150px;
 }
 .account-content-flex-container h3{
+    margin-bottom: 30px;
     font-size: 40px;
     font-weight: 800;
     color:#324d67 ;
@@ -26,6 +27,7 @@
 }
 
 .flex-item {
+cursor: pointer;
  display: flex;
  width: 300px;
  height: 100px;

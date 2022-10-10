@@ -3,12 +3,13 @@ import { BsFillQuestionOctagonFill } from 'react-icons/bs'
 import { FaAddressCard, FaCcMastercard } from 'react-icons/fa'
 import { GoPackage } from 'react-icons/go'
 import { MdLocalShipping, MdSecurity } from 'react-icons/md'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import MotionWrapper from '../../Wrapper/MotionWrapper'
 
 import './AccountContent.css'
 
 const AccountContent = () => {
+const userId = useParams().userId as string   
 const navigate = useNavigate()
  return (
   <div className="account-content">
@@ -19,7 +20,7 @@ const navigate = useNavigate()
       <div>
        <GoPackage />
       </div>
-      <div onClick={()=> navigate("/orders")}>
+      <div onClick={()=> navigate(`/orders/${userId}`)}>
        <h6>My Orders</h6>
        <p>Track, return or buy things again</p>
       </div>

@@ -145,7 +145,7 @@ const AccountMenu = () => {
         <a href="/signin" >
         <p style={{ textTransform: 'none' }}>
           <span>
-            <PersonOutlineIcon />
+            <PersonOutlineIcon style={{fontSize: 35}}/>
           </span>
           {/* Sign In */}
         </p>

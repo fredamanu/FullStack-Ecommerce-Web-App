@@ -15,9 +15,9 @@ const createOrder = async () => {
     email: 'example@gmail.com',
     password: hash,
   })
-  const user = await UserServices.createUser(newUser)
+  const user = await UserServices.findOrCreate(newUser)
   const order = new Order({
-    userId: user._id,
+    userId: user?._id,
     orderItems: [
       {
         name: 'nuture',
@@ -35,9 +35,10 @@ const createOrder = async () => {
       },
     ],
     shippingAddress: {
-      name: 'Freda Manu',
-      address: 'Kaserniveien 16Y',
-      city: 'Kristiansand',
+      name: 'Freda',
+      addressLine1: 'Kaserniveien 15F',
+      addressLine2: 'Kristiansand',
+      city: 'Agder',
       postalCode: 4630,
       country: 'Norway',
     },
@@ -83,7 +84,8 @@ describe('order service', () => {
     const order = await OrderServices.updateOrder(user.orders[0]._id, {
       shippingAddress: {
         name: 'Jeffery',
-        address: 'Kaserniveien 15F',
+        addressLine1: 'Kaserniveien 15F',
+        addressLine2: 'Kristiansand',
         city: 'Agder',
         postalCode: 4630,
         country: 'Norway',
@@ -96,7 +98,8 @@ describe('order service', () => {
     const order = await OrderServices.updateOrder(nonExistingOrderId, {
       shippingAddress: {
         name: 'Jeffery',
-        address: 'Kaserniveien 15F',
+        addressLine1: 'Kaserniveien 15F',
+        addressLine2: 'Kristiansand',
         city: 'Agder',
         postalCode: 4630,
         country: 'Norway',

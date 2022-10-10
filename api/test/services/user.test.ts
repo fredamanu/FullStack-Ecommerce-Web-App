@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import User from '../../src/models/User'
+import User, { UserDocument } from '../../src/models/User'
 import UserServices from '../../src/services/user'
 import connect, { MongodHelper } from '../db-helper'
 
@@ -62,7 +62,7 @@ describe('user service', () => {
   })
   it('should update an existing user', async () => {
     const newUser = await findOrCreateUser()
-    const foundUser = await UserServices.updateUser(newUser._id, {
+    const foundUser = await UserServices.updateUser(newUser?._id, {
       firstName: 'Linda',
     })
     expect(foundUser.firstName).toEqual('Linda')
@@ -76,7 +76,7 @@ describe('user service', () => {
     })
   })
   it('should delete an existing user', async () => {
-    const user = await findOrCreateUser()
+    const user = await findOrCreateUser() as UserDocument
     await UserServices.deleteUser(user._id)
     return await UserServices.findUserByEmail(user).catch((e) => {
       expect(e.message).toMatch(`user ${user.email} not found`)

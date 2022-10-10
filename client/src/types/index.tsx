@@ -110,8 +110,8 @@ export type OrderItem = {
 }
 
 export type OrderDocument = {
+ _id: string
  userId: string
- customerId: string
  paymentIntentId: string
  orderItems: OrderItem[]
  shippingAddress: ShippingAddress
@@ -123,6 +123,7 @@ export type OrderDocument = {
  paymentStatus: string
  isDelivered: boolean
  deliveredAt: string
+ createdAt: string
 }
 
 export type Orders = {

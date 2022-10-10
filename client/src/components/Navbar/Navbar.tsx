@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Toolbar } from '@mui/material/'
 import { useSelector, useDispatch } from 'react-redux'
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined'
+
 
 import { images } from '../../assets'
 import { State } from '../../types'
@@ -10,6 +10,7 @@ import { openCart } from '../../redux/actions/cart'
 import './Navbar.css'
 import SearchBar from '../SearchBar/SearchBar'
 import AccountMenu from '../AccountMenu/AccountMenu'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 const Navbar = () => {
   const [color, setColor] = useState(false)
@@ -59,7 +60,7 @@ const Navbar = () => {
       </Toolbar>
       <div className="cart-icon-container">
         <button type="button" className="cart-icon" onClick={handleOpenCart}>
-          <ShoppingBasketOutlinedIcon />
+          <AiOutlineShoppingCart />
           <span className="cart-item-qty">{totalQuantities}</span>
         </button>
       </div>

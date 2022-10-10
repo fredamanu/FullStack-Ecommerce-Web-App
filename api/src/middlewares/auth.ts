@@ -4,14 +4,14 @@ import { JWT_SECRET } from '../util/secrets'
 
 const auth = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const token = req.headers.authorization?.split(' ')[1]
-    const isCustomAuth = token.length < 500
+    const token = req.headers.authorization?.split(' ')[1] as string
+    const isCustomAuth = token?.length < 500
 
     let decodedData
     if (token && isCustomAuth) {
       decodedData = jwt.verify(token, JWT_SECRET)
 
-      req.user = decodedData?.id
+      req.user = decodedData
     } else {
       decodedData = jwt.decode(token)
       req.user = decodedData?.sub

@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import MenuIcon from '@mui/icons-material/Menu'
 import { HiX } from 'react-icons/hi'
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined'
+
 
 import { images } from '../../assets'
 import { State } from '../../types'
 import { openCart } from '../../redux/actions/cart'
 import Cart from '../Cart/Cart'
 import AccountMenu from '../AccountMenu/AccountMenu'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 const MobileNavbar = () => {
   // @ts-ignore:next-line
@@ -75,7 +76,7 @@ const MobileNavbar = () => {
                 className="cart-icon"
                 onClick={handleOpenCart}
               >
-                <ShoppingBasketOutlinedIcon />
+                <AiOutlineShoppingCart />
                 <span className="cart-item-qty">{totalQuantities}</span>
               </button>
             </div>
@@ -104,7 +105,8 @@ const MobileNavbar = () => {
                 className="cart-icon"
                 onClick={handleOpenCart}
               >
-                <ShoppingBasketOutlinedIcon />
+                {/* <ShoppingBasketOutlinedIcon /> */}
+                <AiOutlineShoppingCart/>
                 <span className="cart-item-qty">{totalQuantities}</span>
               </button>
             </div>

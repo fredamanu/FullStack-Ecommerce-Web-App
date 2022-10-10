@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react'
-import axios from 'axios'
-import { OrderContent } from '../components'
+import React from 'react'
+import { Footer, Navigation, OrderContent } from '../components'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { State } from '../types'
 import { useOrders } from '../hooks/fectchData'
 
 export default function Orders() {
@@ -13,7 +10,9 @@ export default function Orders() {
 
   return (
     <div>
+      <Navigation/>
       <OrderContent/>
+      <Footer/>
     </div>
   )
 }
