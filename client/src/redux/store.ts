@@ -5,34 +5,32 @@ import rootReducer from './reducers'
 import { State } from '../types'
 
 function saveToLocalStorage(state: State) {
-  try {
-    const serialisedState = JSON.stringify(state)
-    localStorage.setItem("persistantState", serialisedState)
-  } catch (e) {
-    console.warn(e)
-  }
+ try {
+  const serialisedState = JSON.stringify(state)
+  localStorage.setItem('persistantState', serialisedState)
+ } catch (e) {
+  console.warn(e)
+ }
 }
 
 function loadFromLocalStorage() {
-  try {
-    const serialisedState = localStorage.getItem("persistantState")
-    if (serialisedState === null) return undefined
-    return JSON.parse(serialisedState)
-  } catch (e) {
-    console.warn(e)
-    return undefined
-  }
+ try {
+  const serialisedState = localStorage.getItem('persistantState')
+  if (serialisedState === null) return undefined
+  return JSON.parse(serialisedState)
+ } catch (e) {
+  console.warn(e)
+  return undefined
+ }
 }
 
-const initialState = {}
 
 const middleware = [thunk]
 
 const store = createStore(
-  rootReducer,
-  loadFromLocalStorage(),
-  // initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
+ rootReducer,
+ loadFromLocalStorage(),
+ composeWithDevTools(applyMiddleware(...middleware))
 )
 
 store.subscribe(() => saveToLocalStorage(store.getState()))

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import '../styles/globals.css';
 import { useBestSellers, useProducts } from '../hooks/fectchData';
 import {
  Footer,
@@ -10,10 +9,8 @@ import {
  Disclaimer,
  BestSellers
 } from '../components';
-
 import MoistureProducts from '../components/MoistureProducts/MoistureProducts';
-import { useSelector } from 'react-redux';
-import { State } from '../types';
+
 
 export default function HomePage() {
  useBestSellers();

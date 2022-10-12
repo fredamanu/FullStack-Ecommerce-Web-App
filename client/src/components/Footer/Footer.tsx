@@ -53,7 +53,7 @@ return (
       <div className="c-t-a">
         <h5>Subscribe</h5>
         <h6>Join our NC Network for updates and offers!</h6>
-        <form method="post" className="subscribe-form">
+        <form className="subscribe-form">
           <input placeholder="Your Email" name="email" />
           <button type="submit">OK</button>
         </form>

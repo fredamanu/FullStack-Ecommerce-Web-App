@@ -11,10 +11,8 @@ import Cart from '../Cart/Cart'
 import AccountMenu from '../AccountMenu/AccountMenu'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
+
 const MobileNavbar = () => {
-  // @ts-ignore:next-line
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
-  const [color, setColor] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const dispatch = useDispatch<any>()
   const state = useSelector((state: State) => state)
@@ -24,16 +22,6 @@ const MobileNavbar = () => {
   const handleOpenCart = () => {
     dispatch(openCart())
   }
-
-  const handleChangeColor = () => {
-    if (window.scrollY >= 50) {
-      setColor(true)
-    } else {
-      setColor(false)
-    }
-  }
-
-  window.addEventListener('scroll', handleChangeColor)
 
   return (
     <nav className={'app-navbar-mobile'}>
