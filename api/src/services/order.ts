@@ -23,6 +23,7 @@ const findAllOrders = async (userId: string): Promise<OrderDocument[]> => {
   const foundOrders = await Order.find({ userId: userId }).sort({
     createdAt: -1,
   })
+
   if (!foundOrders) {
     throw new NotFoundError('No orders')
   }
